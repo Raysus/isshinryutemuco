@@ -1,0 +1,89 @@
+.section {
+  padding: 5rem 0;
+  border-top: 1px solid #1f1f1f;
+}
+
+.inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space);
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0 0 1rem;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+}
+
+.intro {
+  margin: 0 0 2.5rem;
+  max-width: 42ch;
+  color: var(--color-muted);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 1rem 2rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid #2a2a2a;
+}
+
+.item:last-child {
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.name {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.address {
+  margin: 0.35rem 0 0;
+  color: var(--color-muted);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  justify-content: center;
+}
+
+.actions a {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.whatsapp {
+  color: var(--color-accent) !important;
+  font-weight: 700;
+  text-decoration: none !important;
+}
+
+.whatsapp:hover {
+  color: var(--color-accent-hover) !important;
+}
+
+@media (max-width: 700px) {
+  .item {
+    grid-template-columns: 1fr;
+  }
+}

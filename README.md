@@ -1,32 +1,41 @@
-# React + TypeScript + Vite
+# Isshinryu Temuco — Landing
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Landing page moderna del **Dojo Isshin Akira Temuco** (Karate y Kobudo Isshin Ryu OIKKA), hecha con React + TypeScript + Vite.
 
-Currently, two official plugins are available:
+Sitio de referencia: [isshinryutemuco.cl](https://isshinryutemuco.cl/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Cómo correrlo
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Build de producción:
+
+```bash
+npm run build
+npm run preview
+```
+
+## Estructura
+
+```text
+src/
+  content.ts              # Textos, dojos, CTAs (edita aquí el contenido)
+  App.tsx                 # Orquesta Header + secciones + Footer
+  components/             # UI por sección (TSX + CSS Module)
+  index.css               # Tokens globales (colores, tipografía)
+public/images/            # Fotos y logo del dojo
+```
+
+Guía detallada del código: [`docs/GUIA-DEL-CODIGO.md`](docs/GUIA-DEL-CODIGO.md)
+
+## Scripts
+
+| Comando | Qué hace |
+|---------|----------|
+| `npm run dev` | Servidor de desarrollo |
+| `npm run build` | Typecheck + build estático |
+| `npm run preview` | Sirve el build |
+| `npm run lint` | Oxlint |

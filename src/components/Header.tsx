@@ -9,7 +9,8 @@ export function Header() {
     <header className={styles.header}>
       <div className={styles.inner}>
         <a href="#inicio" className={styles.brand} onClick={() => setOpen(false)}>
-          {site.shortName}
+          <img src="/images/logo.png" alt="" className={styles.logo} width={36} height={36} />
+          <span>{site.shortName}</span>
         </a>
 
         <button

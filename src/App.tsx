@@ -1,27 +1,24 @@
-import { useState } from 'react'
-import './App.css'
+import { Contact } from './components/Contact'
+import { Dojos } from './components/Dojos'
+import { Footer } from './components/Footer'
 import { Header } from './components/Header'
+import { Hero } from './components/Hero'
+import { Programs } from './components/Programs'
+import { School } from './components/School'
+import './App.css'
 
 function App() {
-
   return (
     <>
       <Header />
       <main id="inicio">
-        <h1>Isshin Ryu Temuco</h1>
-        <section id="escuela" style={{ minHeight: '60vh', padding: '2rem' }}>
-          <h2>Escuela</h2>
-        </section>
-        <section id="programas" style={{ minHeight: '60vh', padding: '2rem' }}>
-          <h2>Programas</h2>
-        </section>
-        <section id="dojos" style={{ minHeight: '60vh', padding: '2rem' }}>
-          <h2>Dojos</h2>
-        </section>
-        <section id="contacto" style={{ minHeight: '60vh', padding: '2rem' }}>
-          <h2>Contacto</h2>
-        </section>
+        <Hero />
+        <School />
+        <Programs />
+        <Dojos />
+        <Contact />
       </main>
+      <Footer />
     </>
   )
 }
