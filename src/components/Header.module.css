@@ -1,0 +1,102 @@
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    height: var(--header-height);
+    background: color-mix(in srgb, var(--color-bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #222;
+  }
+  
+  .inner {
+    max-width: var(--max-width);
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 var(--space);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space);
+  }
+  
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    letter-spacing: 0.06em;
+  }
+
+  .logo {
+    width: 2.25rem;
+    height: 2.25rem;
+    object-fit: contain;
+    border-radius: 50%;
+  }
+  
+  .menuButton {
+    display: none;
+    font: inherit;
+    color: var(--color-text);
+    background: transparent;
+    border: 1px solid #333;
+    padding: 0.4rem 0.75rem;
+    cursor: pointer;
+  }
+  
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  
+  .link {
+    color: var(--color-muted);
+    font-size: 0.95rem;
+  }
+  
+  .link:hover {
+    color: var(--color-text);
+  }
+  
+  .cta {
+    background: var(--color-accent);
+    color: white;
+    padding: 0.5rem 0.9rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  
+  .cta:hover {
+    background: var(--color-accent-hover);
+  }
+  
+  @media (max-width: 768px) {
+    .menuButton {
+      display: inline-flex;
+    }
+  
+    .nav {
+      display: none;
+      position: absolute;
+      top: var(--header-height);
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      background: var(--color-surface);
+      border-bottom: 1px solid #222;
+      padding: var(--space);
+    }
+  
+    .navOpen {
+      display: flex;
+    }
+  
+    .link,
+    .cta {
+      padding: 0.75rem 0.25rem;
+    }
+  }

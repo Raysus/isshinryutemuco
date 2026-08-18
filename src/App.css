@@ -1,0 +1,5 @@
+/* Layout helpers for the landing shell. Section styles live in CSS Modules. */
+
+main {
+  display: block;
+}
