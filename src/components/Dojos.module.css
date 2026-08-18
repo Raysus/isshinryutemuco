@@ -54,6 +54,15 @@
   font-size: 1.8rem;
 }
 
+.badge {
+  margin: 0 0 0.35rem;
+  color: var(--color-accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .address {
   margin: 0.35rem 0 0;
   color: var(--color-muted);
@@ -80,6 +89,11 @@
 
 .whatsapp:hover {
   color: var(--color-accent-hover) !important;
+}
+
+.pending {
+  color: var(--color-muted);
+  font-size: 0.95rem;
 }
 
 @media (max-width: 700px) {

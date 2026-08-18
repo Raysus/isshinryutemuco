@@ -326,3 +326,32 @@ git push -u origin HEAD
 7. `Hero.tsx` → `School.tsx` → `Programs.tsx` → `Dojos.tsx` → `Contact.tsx` → `Footer.tsx`
 
 Si entiendes ese recorrido, ya puedes mantener y extender el landing con criterio.
+
+---
+
+## 14. Noticias + acceso admin (backend)
+
+El proyecto ahora incluye una API Express en `server/`:
+
+| Ruta | Quién | Qué hace |
+|------|-------|----------|
+| `GET /api/news` | público | Lista noticias |
+| `POST /api/news` | admin | Crea noticia (+ imagen opcional) |
+| `DELETE /api/news/:id` | admin | Elimina |
+| `POST /api/auth/login` | — | Inicia sesión (cookie) |
+| `POST /api/auth/logout` | admin | Cierra sesión |
+| `GET /api/auth/me` | admin | Usuario actual |
+
+Datos en `data/*.json`, imágenes en `uploads/` (ambos ignorados por git).
+
+Frontend:
+
+- Sección pública: `src/components/News.tsx`
+- Login: `/admin` → `AdminLoginPage`
+- Panel: `/admin/noticias` → `AdminNewsPage`
+- Auth React: `src/auth/AuthContext.tsx` (`useAuth`)
+- Cliente HTTP: `src/lib/api.ts`
+
+En desarrollo, Vite proxifica `/api` y `/uploads` al puerto `3001`.
+
+Comando unificado: `npm run dev` (web + api).
