@@ -11,6 +11,9 @@ import '../App.css'
 export function HomePage() {
   return (
     <>
+      <a className="skipLink" href="#inicio">
+        Saltar al contenido
+      </a>
       <Header />
       <main id="inicio">
         <Hero />

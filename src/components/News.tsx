@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { api, imageSrc, type NewsItem } from '../lib/api'
 import styles from './News.module.css'
 
@@ -33,50 +34,77 @@ export function News() {
     }
   }, [])
 
+  const featured = items[0]
+  const rest = items.slice(1, 4)
+
   return (
     <section id="noticias" className={styles.section} aria-labelledby="noticias-title">
       <div className={styles.inner}>
-        <p className={styles.eyebrow}>Novedades</p>
-        <h2 id="noticias-title" className={styles.title}>
-          Noticias del dojo
-        </h2>
-        <p className={styles.intro}>
-          Exámenes, actividades y anuncios de Isshin Akira. El equipo publica desde el panel
-          de administración.
-        </p>
+        <header className={styles.header}>
+          <div>
+            <p className={styles.eyebrow}>Novedades</p>
+            <h2 id="noticias-title" className={styles.title}>
+              Noticias del dojo
+            </h2>
+          </div>
+          <p className={styles.intro}>
+            Exámenes, actividades y anuncios de Isshin Akira.
+          </p>
+        </header>
 
         {loading ? <p className={styles.status}>Cargando noticias…</p> : null}
         {error ? (
           <p className={styles.status}>
-            No se pudieron cargar las noticias. ¿Está corriendo el servidor? ({error})
+            No se pudieron cargar las noticias. Revisa que el servidor esté activo.
           </p>
         ) : null}
 
         {!loading && !error && items.length === 0 ? (
-          <p className={styles.status}>Aún no hay noticias publicadas.</p>
+          <div className={styles.empty}>
+            <p>Aún no hay noticias publicadas.</p>
+            <Link className={styles.adminLink} to="/admin">
+              Ir al panel admin
+            </Link>
+          </div>
         ) : null}
 
-        <div className={styles.list}>
-          {items.map((item) => {
-            const src = imageSrc(item.imageUrl)
-            return (
-              <article key={item.id} className={styles.item}>
-                {src ? (
-                  <img className={styles.image} src={src} alt="" loading="lazy" />
-                ) : (
-                  <div className={styles.placeholder} aria-hidden="true" />
-                )}
-                <div className={styles.copy}>
-                  <time className={styles.date} dateTime={item.createdAt}>
-                    {formatDate(item.createdAt)}
-                  </time>
-                  <h3 className={styles.itemTitle}>{item.title}</h3>
-                  <p className={styles.body}>{item.body}</p>
-                </div>
-              </article>
-            )
-          })}
-        </div>
+        {featured ? (
+          <div className={styles.layout}>
+            <article className={styles.featured}>
+              {imageSrc(featured.imageUrl) ? (
+                <img
+                  className={styles.featuredImage}
+                  src={imageSrc(featured.imageUrl) ?? undefined}
+                  alt=""
+                  loading="lazy"
+                />
+              ) : (
+                <div className={styles.placeholder} aria-hidden="true" />
+              )}
+              <div className={styles.featuredCopy}>
+                <time className={styles.date} dateTime={featured.createdAt}>
+                  {formatDate(featured.createdAt)}
+                </time>
+                <h3 className={styles.featuredTitle}>{featured.title}</h3>
+                <p className={styles.body}>{featured.body}</p>
+              </div>
+            </article>
+
+            {rest.length > 0 ? (
+              <div className={styles.sideList}>
+                {rest.map((item) => (
+                  <article key={item.id} className={styles.sideItem}>
+                    <time className={styles.date} dateTime={item.createdAt}>
+                      {formatDate(item.createdAt)}
+                    </time>
+                    <h3 className={styles.sideTitle}>{item.title}</h3>
+                    <p className={styles.sideBody}>{item.body}</p>
+                  </article>
+                ))}
+              </div>
+            ) : null}
+          </div>
+        ) : null}
       </div>
     </section>
   )

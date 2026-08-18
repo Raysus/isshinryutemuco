@@ -4,7 +4,7 @@
   place-items: center;
   padding: 2rem var(--space);
   background:
-    radial-gradient(circle at 20% 10%, rgba(196, 30, 42, 0.18), transparent 35%),
+    radial-gradient(circle at 18% 12%, rgba(192, 16, 26, 0.12), transparent 34%),
     var(--color-bg);
 }
 
@@ -18,7 +18,7 @@
 .panelWide {
   width: min(420px, 100%);
   background: var(--color-surface);
-  border: 1px solid #2a2a2a;
+  border: 1px solid var(--color-line);
   padding: 1.5rem;
   display: grid;
   gap: 0.9rem;
@@ -45,7 +45,7 @@
 .eyebrow {
   margin: 0;
   color: var(--color-accent);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -76,8 +76,8 @@
 .input,
 .textarea {
   width: 100%;
-  border: 1px solid #333;
-  background: #0f0f0f;
+  border: 1px solid var(--color-line);
+  background: #fafafa;
   color: var(--color-text);
   padding: 0.7rem 0.8rem;
   font: inherit;
@@ -99,7 +99,7 @@
 
 .button {
   background: var(--color-accent);
-  color: #fff;
+  color: white;
 }
 
 .button:hover {
@@ -109,13 +109,13 @@
 .secondaryButton {
   background: transparent;
   color: var(--color-text);
-  border: 1px solid #444;
+  border: 1px solid var(--color-line);
 }
 
 .dangerButton {
   background: transparent;
-  color: #ff7b7b;
-  border: 1px solid #5a2a2a;
+  color: #9c0c14;
+  border: 1px solid #e2b0b3;
   align-self: start;
 }
 
@@ -127,12 +127,12 @@
 
 .error {
   margin: 0;
-  color: #ff8d8d;
+  color: #9c0c14;
 }
 
 .success {
   margin: 0;
-  color: #8dffb0;
+  color: #1f7a43;
 }
 
 .newsList {
@@ -149,7 +149,7 @@
   gap: 0.9rem;
   align-items: start;
   padding-top: 0.9rem;
-  border-top: 1px solid #2a2a2a;
+  border-top: 1px solid var(--color-line);
 }
 
 .thumb {

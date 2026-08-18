@@ -144,9 +144,9 @@ export const dojos = [
 
 export const contact = {
   title: 'Agenda tu clase de prueba',
-  text: 'Escríbenos por WhatsApp o correo y te contactaremos a la brevedad para coordinar tu primera clase.',
+  text: 'Escríbenos por WhatsApp o correo y te contactaremos a la brevedad para coordinar tu primera clase en el Hombu Dojo.',
   primaryCta: {
-    label: 'WhatsApp Temuco',
+    label: 'WhatsApp Hombu Temuco',
     href: 'https://api.whatsapp.com/send?phone=56950707183&text=Hola%2C%20quiero%20agendar%20una%20clase%20de%20prueba',
   },
   email: {
