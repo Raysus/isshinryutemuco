@@ -4,16 +4,60 @@ export const site = {
   tagline: 'Karate y Kobudo Isshin Ryu OIKKA para niños, jóvenes y adultos',
   cta: {
     label: 'Agendar mi clase de prueba',
-    href: '#contacto',
+    href: '/#contacto',
   },
 }
 
+/** Visible in the public header */
 export const navLinks = [
-  { label: 'Escuela', href: '#escuela' },
-  { label: 'Programas', href: '#programas' },
-  { label: 'Noticias', href: '#noticias' },
-  { label: 'Dojos', href: '#dojos' },
-  { label: 'Contacto', href: '#contacto' },
+  { label: 'Escuela', href: '/#escuela' },
+  { label: 'Programas', href: '/#programas' },
+  { label: 'Horarios', href: '/#horarios' },
+  { label: 'Noticias', href: '/#noticias' },
+  { label: 'Dojos', href: '/#dojos' },
+  { label: 'Contacto', href: '/#contacto' },
+] as const
+
+/**
+ * Prepared pages/routes — hidden from nav until we publish them.
+ * Toggle `published: true` and add to nav when ready.
+ */
+export const hiddenPages = [
+  {
+    published: false,
+    path: '/escuela/mision-y-vision',
+    label: 'Misión y Visión',
+  },
+  {
+    published: false,
+    path: '/escuela/historia-y-biografias',
+    label: 'Historia y Biografías',
+  },
+  {
+    published: false,
+    path: '/escuela/equipo',
+    label: 'Equipo',
+  },
+  {
+    published: false,
+    path: '/programas/infantil',
+    label: 'Etapa Infantil',
+  },
+  {
+    published: false,
+    path: '/programas/adolescentes',
+    label: 'Etapa Adolescentes',
+  },
+  {
+    published: false,
+    path: '/programas/adultos',
+    label: 'Etapa Adultos',
+  },
+  {
+    published: false,
+    path: '/programas/deportiva',
+    label: 'Etapa Deportiva',
+  },
 ] as const
 
 export const hero = {
@@ -105,6 +149,46 @@ export const programs = [
     ],
   },
 ] as const
+
+export const schedule = {
+  title: 'Horarios',
+  intro:
+    'Clases de Karate y Kobudo Isshin Akira. Consulta también por horarios extra o adaptativos.',
+  note: 'Los horarios pueden variar; confirma por WhatsApp o correo antes de tu primera visita.',
+  groups: [
+    {
+      id: 'miraflores',
+      days: 'Lunes y miércoles',
+      place: 'Miraflores #360 (Sala Multiusos)',
+      slots: [
+        { ages: '7 a 12 años', time: '18:00 hrs.' },
+        { ages: '13 años o más', time: '17:00 hrs.' },
+      ],
+    },
+    {
+      id: 'portales-semana',
+      days: 'Martes y jueves',
+      place: 'Portales #603 — Hombu Dojo Isshin Akira',
+      slots: [
+        { ages: '4 a 6 años', time: '16:00 y 18:00 hrs.' },
+        { ages: '7 a 12 años', time: '17:00 hrs.' },
+        { ages: '13 años o más', time: '19:00 hrs.' },
+        { ages: 'Jóvenes y adultos', time: '20:00 hrs.' },
+      ],
+    },
+    {
+      id: 'portales-sabado',
+      days: 'Sábado',
+      place: 'Portales #603 — Hombu Dojo Isshin Akira',
+      slots: [
+        { ages: '4 a 6 años', time: '09:00 y 12:00 hrs.' },
+        { ages: '7 a 12 años', time: '11:00 hrs.' },
+        { ages: '13 años o más', time: '10:00 hrs.' },
+        { ages: 'Jóvenes y adultos', time: '13:15 hrs.' },
+      ],
+    },
+  ],
+}
 
 export const dojos = [
   {

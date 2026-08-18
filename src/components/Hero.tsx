@@ -22,7 +22,7 @@ export function Hero() {
           <a href={site.cta.href} className={styles.cta}>
             {site.cta.label}
           </a>
-          <a href="#programas" className={styles.secondary}>
+          <a href="/#programas" className={styles.secondary}>
             Ver programas
           </a>
         </div>
