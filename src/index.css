@@ -1,17 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+3:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@400;500;600;700&display=swap');
 
 :root {
-  --color-bg: #0a0a0a;
-  --color-surface: #141414;
-  --color-text: #f5f5f5;
-  --color-muted: #a3a3a3;
-  --color-accent: #c41e2a;
-  --color-accent-hover: #e02836;
+  /* Cool stone light theme — not warm cream, not generic pure-black AI dark */
+  --color-bg: #f2f2f0;
+  --color-surface: #ffffff;
+  --color-surface-alt: #e7e7e3;
+  --color-ink: #141414;
+  --color-text: #141414;
+  --color-muted: #5a5a5a;
+  --color-line: #d4d4cf;
+  --color-accent: #c0101a;
+  --color-accent-hover: #9c0c14;
+  --color-on-accent: #ffffff;
+  --color-hero-text: #f7f7f5;
+  --color-hero-muted: #cfcfc8;
+
   --font-display: 'Bebas Neue', sans-serif;
-  --font-body: 'Source Sans 3', sans-serif;
-  --header-height: 4rem;
-  --max-width: 72rem;
-  --space: 1rem;
+  --font-body: 'Sora', sans-serif;
+
+  --header-height: 4.25rem;
+  --max-width: 70rem;
+  --space: clamp(1rem, 3vw, 1.5rem);
+  --section-y: clamp(4.5rem, 10vw, 7rem);
+  --radius: 0;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 *,
@@ -27,9 +39,13 @@ html {
 body {
   margin: 0;
   font-family: var(--font-body);
-  background: var(--color-bg);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(192, 16, 26, 0.06), transparent 28%),
+    linear-gradient(180deg, #f7f7f5 0%, var(--color-bg) 18%, var(--color-bg) 100%);
   color: var(--color-text);
-  line-height: 1.5;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -42,9 +58,45 @@ img {
   display: block;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: var(--font-display);
   font-weight: 400;
   letter-spacing: 0.04em;
-  line-height: 1.1;
+  line-height: 1.05;
+  color: var(--color-ink);
+}
+
+p {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 28%, white);
+  color: var(--color-ink);
+}
+
+.skipLink {
+  position: absolute;
+  left: var(--space);
+  top: -100px;
+  z-index: 100;
+  background: var(--color-ink);
+  color: white;
+  padding: 0.65rem 0.9rem;
+  font-weight: 600;
+}
+
+.skipLink:focus {
+  top: var(--space);
+}
+
+section[id] {
+  scroll-margin-top: calc(var(--header-height) + 0.75rem);
 }

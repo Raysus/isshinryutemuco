@@ -1,16 +1,34 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { navLinks, site } from '../content'
 import styles from './Header.module.css'
 
 export function Header() {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [open])
 
   return (
-    <header className={styles.header}>
+    <header className={scrolled || open ? `${styles.header} ${styles.scrolled}` : styles.header}>
       <div className={styles.inner}>
         <a href="#inicio" className={styles.brand} onClick={() => setOpen(false)}>
-          <img src="/images/logo.png" alt="" className={styles.logo} width={36} height={36} />
-          <span>{site.shortName}</span>
+          <img src="/images/logo.png" alt="" className={styles.logo} width={40} height={40} />
+          <span className={styles.brandText}>
+            <span className={styles.brandName}>{site.shortName}</span>
+            <span className={styles.brandSub}>Temuco · OIKKA</span>
+          </span>
         </a>
 
         <button
@@ -20,6 +38,7 @@ export function Header() {
           aria-controls="nav-principal"
           onClick={() => setOpen((value) => !value)}
         >
+          <span className={styles.menuIcon} aria-hidden="true" />
           {open ? 'Cerrar' : 'Menú'}
         </button>
 
@@ -39,7 +58,8 @@ export function Header() {
             </a>
           ))}
           <a href={site.cta.href} className={styles.cta} onClick={() => setOpen(false)}>
-            {site.cta.label}
+            <span className={styles.ctaFull}>{site.cta.label}</span>
+            <span className={styles.ctaShort}>Agendar</span>
           </a>
         </nav>
       </div>
