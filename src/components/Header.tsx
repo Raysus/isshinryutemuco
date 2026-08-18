@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { navLinks, site } from '../content'
 import styles from './Header.module.css'
 
@@ -23,13 +24,13 @@ export function Header() {
   return (
     <header className={scrolled || open ? `${styles.header} ${styles.scrolled}` : styles.header}>
       <div className={styles.inner}>
-        <a href="#inicio" className={styles.brand} onClick={() => setOpen(false)}>
+        <Link to="/" className={styles.brand} onClick={() => setOpen(false)}>
           <img src="/images/logo.png" alt="" className={styles.logo} width={40} height={40} />
           <span className={styles.brandText}>
             <span className={styles.brandName}>{site.shortName}</span>
             <span className={styles.brandSub}>Temuco · OIKKA</span>
           </span>
-        </a>
+        </Link>
 
         <button
           type="button"
