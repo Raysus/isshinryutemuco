@@ -10,28 +10,37 @@ export function Dojos() {
           Nuestros dojos
         </h2>
         <p className={styles.intro}>
-          Entrena en Temuco, Concepción o Los Ángeles. Elige tu sede y contáctanos
-          directamente.
+          El Hombu Dojo está en Temuco. También entrenamos en una segunda sede local y en
+          Los Ángeles.
         </p>
 
         <ul className={styles.list}>
           {dojos.map((dojo) => (
             <li key={dojo.id} className={styles.item}>
-              <h3 className={styles.name}>{dojo.name}</h3>
-              <p className={styles.address}>{dojo.address}</p>
+              <div>
+                {dojo.badge ? <p className={styles.badge}>{dojo.badge}</p> : null}
+                <h3 className={styles.name}>{dojo.name}</h3>
+                <p className={styles.address}>{dojo.address}</p>
+              </div>
               <div className={styles.actions}>
-                <a href={dojo.phoneHref}>{dojo.phone}</a>
+                {dojo.phone && dojo.phoneHref ? (
+                  <a href={dojo.phoneHref}>{dojo.phone}</a>
+                ) : null}
                 {dojo.email && dojo.emailHref ? (
                   <a href={dojo.emailHref}>{dojo.email}</a>
                 ) : null}
-                <a
-                  className={styles.whatsapp}
-                  href={dojo.whatsappHref}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  WhatsApp
-                </a>
+                {dojo.whatsappHref ? (
+                  <a
+                    className={styles.whatsapp}
+                    href={dojo.whatsappHref}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    WhatsApp
+                  </a>
+                ) : (
+                  <span className={styles.pending}>Contacto por confirmar</span>
+                )}
               </div>
             </li>
           ))}

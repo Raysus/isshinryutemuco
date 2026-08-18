@@ -1,25 +1,22 @@
-import { Contact } from './components/Contact'
-import { Dojos } from './components/Dojos'
-import { Footer } from './components/Footer'
-import { Header } from './components/Header'
-import { Hero } from './components/Hero'
-import { Programs } from './components/Programs'
-import { School } from './components/School'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { AuthProvider } from './auth/AuthContext'
+import { AdminLoginPage } from './pages/AdminLoginPage'
+import { AdminNewsPage } from './pages/AdminNewsPage'
+import { HomePage } from './pages/HomePage'
 import './App.css'
 
 function App() {
   return (
-    <>
-      <Header />
-      <main id="inicio">
-        <Hero />
-        <School />
-        <Programs />
-        <Dojos />
-        <Contact />
-      </main>
-      <Footer />
-    </>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/admin" element={<AdminLoginPage />} />
+          <Route path="/admin/noticias" element={<AdminNewsPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   )
 }
 

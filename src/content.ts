@@ -11,6 +11,7 @@ export const site = {
 export const navLinks = [
   { label: 'Escuela', href: '#escuela' },
   { label: 'Programas', href: '#programas' },
+  { label: 'Noticias', href: '#noticias' },
   { label: 'Dojos', href: '#dojos' },
   { label: 'Contacto', href: '#contacto' },
 ] as const
@@ -107,8 +108,9 @@ export const programs = [
 
 export const dojos = [
   {
-    id: 'temuco',
-    name: 'Dojo Temuco',
+    id: 'hombu-temuco',
+    name: 'Hombu Dojo Temuco',
+    badge: 'Sede principal',
     address: 'Diego Portales 603, Temuco',
     phone: '+56 9 5070 7183',
     phoneHref: 'tel:+56950707183',
@@ -117,19 +119,20 @@ export const dojos = [
     whatsappHref: 'https://api.whatsapp.com/send?phone=56950707183',
   },
   {
-    id: 'concepcion',
-    name: 'Dojo Concepción',
-    address:
-      'Edgardo Merino Garrido con Cayuman, Villa Rukacolimapu, San Pedro de La Paz',
-    phone: '+56 9 5835 2349',
-    phoneHref: 'tel:+56958352349',
-    email: 'marisol.belmar.karate@gmail.com',
-    emailHref: 'mailto:marisol.belmar.karate@gmail.com',
-    whatsappHref: 'https://api.whatsapp.com/send?phone=56958352349',
+    id: 'temuco-2',
+    name: 'Dojo Temuco — Sede 2',
+    badge: 'Temuco',
+    address: 'Dirección por confirmar',
+    phone: null,
+    phoneHref: null,
+    email: null,
+    emailHref: null,
+    whatsappHref: null,
   },
   {
     id: 'los-angeles',
     name: 'Dojo Los Ángeles',
+    badge: null,
     address: 'Valdivia 763, Los Ángeles, VIII Región, Chile',
     phone: '+56 9 9246 8396',
     phoneHref: 'tel:+56992468396',
