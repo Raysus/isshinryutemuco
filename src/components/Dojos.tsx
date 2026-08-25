@@ -11,8 +11,7 @@ export function Dojos() {
             Nuestros dojos
           </h2>
           <p className={styles.intro}>
-            El Hombu Dojo está en Temuco. También entrenamos en una segunda sede local y en
-            Los Ángeles.
+            El Hombu Dojo está en Diego Portales 603. También entrenamos en Vanguardia Center · Local 114.
           </p>
         </header>
 

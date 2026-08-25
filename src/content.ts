@@ -1,21 +1,29 @@
+import { assetUrl } from './lib/paths'
+
 export const site = {
   name: 'Dojo Isshin Akira Temuco',
   shortName: 'Isshin Akira',
   tagline: 'Karate y Kobudo Isshin Ryu OIKKA para niños, jóvenes y adultos',
   cta: {
     label: 'Agendar mi clase de prueba',
-    href: '/#contacto',
+    href: 'https://api.whatsapp.com/send?phone=56950707183&text=Hola%2C%20quiero%20agendar%20una%20clase%20de%20prueba',
+  },
+  whatsapp: {
+    phone: '56950707183',
+    href: 'https://api.whatsapp.com/send?phone=56950707183&text=Hola%2C%20quiero%20agendar%20una%20clase%20de%20prueba',
+    label: 'Escribir por WhatsApp',
   },
 }
 
 /** Visible in the public header */
 export const navLinks = [
   { label: 'Escuela', href: '/#escuela' },
+  { label: 'Misión', href: '/escuela/mision-y-vision' },
+  { label: 'Equipo', href: '/escuela/equipo' },
   { label: 'Programas', href: '/#programas' },
   { label: 'Horarios', href: '/#horarios' },
   { label: 'Noticias', href: '/#noticias' },
   { label: 'Dojos', href: '/#dojos' },
-  { label: 'Contacto', href: '/#contacto' },
 ] as const
 
 /**
@@ -24,7 +32,7 @@ export const navLinks = [
  */
 export const hiddenPages = [
   {
-    published: false,
+    published: true,
     path: '/escuela/mision-y-vision',
     label: 'Misión y Visión',
   },
@@ -34,7 +42,7 @@ export const hiddenPages = [
     label: 'Historia y Biografías',
   },
   {
-    published: false,
+    published: true,
     path: '/escuela/equipo',
     label: 'Equipo',
   },
@@ -65,9 +73,37 @@ export const hero = {
   title: 'Karate y Kobudo Isshin Ryu en Temuco',
   subtitle:
     'Formación profesional para niños, jóvenes y adultos. Escuela de un solo corazón.',
-  image: '/images/hero.jpg',
+  image: assetUrl('images/hero.jpg'),
   imageAlt: 'Practicantes de Karate Isshin Ryu en entrenamiento',
 }
+
+/** Carrusel del hero: eventos, noticias, representación, público */
+export const heroSlides = [
+  {
+    id: 'eventos',
+    kicker: 'Eventos',
+    title: 'Exámenes, seminarios y encuentros',
+    text: 'Actividades del dojo y de la familia OIKKA: graduaciones, entrenamientos especiales y competencia sana.',
+  },
+  {
+    id: 'noticias',
+    kicker: 'Noticias',
+    title: 'Lo que pasa en Isshin Akira',
+    text: 'Avisos de horarios, logros de alumnos y novedades del Hombu Dojo Temuco.',
+  },
+  {
+    id: 'representacion',
+    kicker: 'La escuela',
+    title: 'Isshin Akira · un solo corazón',
+    text: 'Representamos Isshin Ryu con claridad técnica, respeto y constancia en cada clase.',
+  },
+  {
+    id: 'publico',
+    kicker: 'Para quién',
+    title: 'Niños, jóvenes y adultos',
+    text: 'Programas por etapa: desde la primera clase hasta la formación deportiva.',
+  },
+] as const
 
 export const school = {
   id: 'escuela',
@@ -90,6 +126,10 @@ export const school = {
       text: 'Trabajamos técnica, valores y desarrollo personal en cada etapa de la vida.',
     },
   ],
+  links: [
+    { label: 'Misión, visión e identidad', href: '/escuela/mision-y-vision' },
+    { label: 'Conoce al equipo', href: '/escuela/equipo' },
+  ],
 }
 
 export const programsIntro =
@@ -99,7 +139,7 @@ export const programs = [
   {
     id: 'infantil',
     title: 'Etapa Infantil',
-    image: '/images/infantil.jpg',
+    image: assetUrl('images/infantil.jpg'),
     summary:
       'Estimulación psicomotriz en ambiente lúdico, hábitos de disciplina y respeto, e inicio en los elementos básicos del Karate Do Isshin Ryu.',
     points: [
@@ -112,7 +152,7 @@ export const programs = [
   {
     id: 'adolescentes',
     title: 'Etapa Adolescentes',
-    image: '/images/adolescentes.jpg',
+    image: assetUrl('images/adolescentes.jpg'),
     summary:
       'Valores como perseverancia y personalidad, estabilidad psicológica en el entrenamiento y desarrollo de cualidades físicas y técnicas.',
     points: [
@@ -125,7 +165,7 @@ export const programs = [
   {
     id: 'adultos',
     title: 'Etapa Adultos',
-    image: '/images/adultos.jpg',
+    image: assetUrl('images/adultos.jpg'),
     summary:
       'Preparación física, técnica y táctica del Karate Do, con énfasis en autocontrol, liderazgo y fortalecimiento cardiorrespiratorio.',
     points: [
@@ -138,7 +178,7 @@ export const programs = [
   {
     id: 'deportiva',
     title: 'Etapa Deportiva',
-    image: '/images/deportiva.jpg',
+    image: assetUrl('images/deportiva.jpg'),
     summary:
       'Orientación competitiva con disciplina, respeto y compañerismo: preparación física, técnico-táctica y psicológica para kata y kumite.',
     points: [
@@ -153,38 +193,69 @@ export const programs = [
 export const schedule = {
   title: 'Horarios',
   intro:
-    'Clases de Karate y Kobudo Isshin Akira. Consulta también por horarios extra o adaptativos.',
+    'Clases de Karate y Kobudo Isshin Akira en dos sedes de Temuco. Consulta también por horarios extra o adaptativos.',
   note: 'Los horarios pueden variar; confirma por WhatsApp o correo antes de tu primera visita.',
-  groups: [
+  venues: [
     {
-      id: 'miraflores',
-      days: 'Lunes y miércoles',
-      place: 'Miraflores #360 (Sala Multiusos)',
-      slots: [
-        { ages: '7 a 12 años', time: '18:00 hrs.' },
-        { ages: '13 años o más', time: '17:00 hrs.' },
+      id: 'vanguardia',
+      name: 'Vanguardia Center · Local 114',
+      badge: 'Sucursal',
+      period: 'Lunes a sábado',
+      note: 'Horarios provisionales (por confirmar).',
+      groups: [
+        {
+          id: 'vanguardia-lun-mie',
+          days: 'Lunes y miércoles',
+          slots: [
+            { ages: '7 a 12 años', time: '18:00 hrs.' },
+            { ages: '13 años o más', time: '17:00 hrs.' },
+          ],
+        },
+        {
+          id: 'vanguardia-mar-jue',
+          days: 'Martes y jueves',
+          slots: [
+            { ages: '4 a 6 años', time: '16:00 y 18:00 hrs.' },
+            { ages: '7 a 12 años', time: '17:00 hrs.' },
+            { ages: '13 años o más', time: '19:00 hrs.' },
+            { ages: 'Jóvenes y adultos', time: '20:00 hrs.' },
+          ],
+        },
+        {
+          id: 'vanguardia-sabado',
+          days: 'Sábado',
+          slots: [
+            { ages: '4 a 6 años', time: '09:00 y 12:00 hrs.' },
+            { ages: '7 a 12 años', time: '11:00 hrs.' },
+            { ages: '13 años o más', time: '10:00 hrs.' },
+            { ages: 'Jóvenes y adultos', time: '13:15 hrs.' },
+          ],
+        },
       ],
     },
     {
-      id: 'portales-semana',
-      days: 'Martes y jueves',
-      place: 'Portales #603 — Hombu Dojo Isshin Akira',
-      slots: [
-        { ages: '4 a 6 años', time: '16:00 y 18:00 hrs.' },
-        { ages: '7 a 12 años', time: '17:00 hrs.' },
-        { ages: '13 años o más', time: '19:00 hrs.' },
-        { ages: 'Jóvenes y adultos', time: '20:00 hrs.' },
-      ],
-    },
-    {
-      id: 'portales-sabado',
-      days: 'Sábado',
-      place: 'Portales #603 — Hombu Dojo Isshin Akira',
-      slots: [
-        { ages: '4 a 6 años', time: '09:00 y 12:00 hrs.' },
-        { ages: '7 a 12 años', time: '11:00 hrs.' },
-        { ages: '13 años o más', time: '10:00 hrs.' },
-        { ages: 'Jóvenes y adultos', time: '13:15 hrs.' },
+      id: 'hombu',
+      name: 'Hombu Dojo · Portales #603',
+      badge: 'Sede principal',
+      period: 'Martes, jueves y sábado',
+      note: null,
+      groups: [
+        {
+          id: 'hombu-mar-jue',
+          days: 'Martes y jueves',
+          slots: [
+            { ages: 'Clase', time: '19:00 hrs.' },
+            { ages: 'Clase', time: '20:00 hrs.' },
+          ],
+        },
+        {
+          id: 'hombu-sabado',
+          days: 'Sábado',
+          slots: [
+            { ages: 'Clase', time: '10:30 hrs.' },
+            { ages: 'Clase', time: '12:30 hrs.' },
+          ],
+        },
       ],
     },
   ],
@@ -203,47 +274,27 @@ export const dojos = [
     whatsappHref: 'https://api.whatsapp.com/send?phone=56950707183',
   },
   {
-    id: 'temuco-2',
-    name: 'Dojo Temuco — Sede 2',
-    badge: 'Temuco',
-    address: 'Dirección por confirmar',
-    phone: null,
-    phoneHref: null,
-    email: null,
-    emailHref: null,
-    whatsappHref: null,
-  },
-  {
-    id: 'los-angeles',
-    name: 'Dojo Los Ángeles',
-    badge: null,
-    address: 'Valdivia 763, Los Ángeles, VIII Región, Chile',
-    phone: '+56 9 9246 8396',
-    phoneHref: 'tel:+56992468396',
-    email: null,
-    emailHref: null,
-    whatsappHref: 'https://api.whatsapp.com/send?phone=56992468396',
+    id: 'vanguardia',
+    name: 'Dojo Temuco — Vanguardia Center',
+    badge: 'Sucursal',
+    address: 'Vanguardia Center · Local 114, Temuco',
+    phone: '+56 9 5070 7183',
+    phoneHref: 'tel:+56950707183',
+    email: 'contacto@isshinryutemuco.cl',
+    emailHref: 'mailto:contacto@isshinryutemuco.cl',
+    whatsappHref: 'https://api.whatsapp.com/send?phone=56950707183',
   },
 ] as const
-
-export const contact = {
-  title: 'Agenda tu clase de prueba',
-  text: 'Escríbenos por WhatsApp o correo y te contactaremos a la brevedad para coordinar tu primera clase en el Hombu Dojo.',
-  primaryCta: {
-    label: 'WhatsApp Hombu Temuco',
-    href: 'https://api.whatsapp.com/send?phone=56950707183&text=Hola%2C%20quiero%20agendar%20una%20clase%20de%20prueba',
-  },
-  email: {
-    label: 'contacto@isshinryutemuco.cl',
-    href: 'mailto:contacto@isshinryutemuco.cl',
-  },
-}
 
 export const footer = {
   links: [
     {
-      label: 'Sitio actual',
-      href: 'https://isshinryutemuco.cl/',
+      label: 'Misión y visión',
+      href: '/escuela/mision-y-vision',
+    },
+    {
+      label: 'Equipo',
+      href: '/escuela/equipo',
     },
     {
       label: 'YouTube',
@@ -251,4 +302,5 @@ export const footer = {
     },
   ],
   note: 'Dojo Isshin Akira Temuco — Karate y Kobudo Isshin Ryu OIKKA',
+  email: 'contacto@isshinryutemuco.cl',
 }

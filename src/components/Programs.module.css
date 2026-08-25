@@ -34,24 +34,17 @@
   color: var(--color-muted);
 }
 
-.list {
+.carousel {
   display: grid;
-  gap: clamp(2.5rem, 6vw, 4rem);
+  gap: 1.25rem;
 }
 
-.item {
+.slide {
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
   gap: clamp(1.25rem, 3vw, 2.25rem);
   align-items: center;
-}
-
-.item:nth-child(even) {
-  direction: rtl;
-}
-
-.item:nth-child(even) > * {
-  direction: ltr;
+  animation: fadeSlide 0.5s var(--ease) both;
 }
 
 .media {
@@ -64,11 +57,6 @@
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  transition: transform 0.7s var(--ease);
-}
-
-.item:hover .image {
-  transform: scale(1.04);
 }
 
 .index {
@@ -123,16 +111,68 @@
   background: var(--color-accent);
 }
 
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.navBtn {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.navBtn:hover {
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 8%, white);
+}
+
+.dots {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--color-line);
+  cursor: pointer;
+}
+
+.dotActive {
+  background: var(--color-accent);
+  transform: scale(1.2);
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 800px) {
-  .item,
-  .item:nth-child(even) {
+  .slide {
     grid-template-columns: 1fr;
-    direction: ltr;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .item:hover .image {
-    transform: none;
+  .slide {
+    animation: none;
   }
 }

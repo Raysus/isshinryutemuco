@@ -13,20 +13,34 @@ export function Schedule() {
           <p className={styles.intro}>{schedule.intro}</p>
         </header>
 
-        <div className={styles.groups}>
-          {schedule.groups.map((group) => (
-            <article key={group.id} className={styles.group}>
-              <p className={styles.days}>{group.days}</p>
-              <h3 className={styles.place}>{group.place}</h3>
-              <ul className={styles.slots}>
-                {group.slots.map((slot) => (
-                  <li key={`${group.id}-${slot.ages}`}>
-                    <span className={styles.ages}>{slot.ages}</span>
-                    <span className={styles.time}>{slot.time}</span>
-                  </li>
+        <div className={styles.venues}>
+          {schedule.venues.map((venue) => (
+            <section key={venue.id} className={styles.venue} aria-labelledby={`venue-${venue.id}`}>
+              <header className={styles.venueHead}>
+                {venue.badge ? <p className={styles.badge}>{venue.badge}</p> : null}
+                <h3 id={`venue-${venue.id}`} className={styles.venueName}>
+                  {venue.name}
+                </h3>
+                <p className={styles.period}>{venue.period}</p>
+                {venue.note ? <p className={styles.venueNote}>{venue.note}</p> : null}
+              </header>
+
+              <div className={styles.groups}>
+                {venue.groups.map((group) => (
+                  <article key={group.id} className={styles.group}>
+                    <p className={styles.days}>{group.days}</p>
+                    <ul className={styles.slots}>
+                      {group.slots.map((slot) => (
+                        <li key={`${group.id}-${slot.ages}-${slot.time}`}>
+                          <span className={styles.ages}>{slot.ages}</span>
+                          <span className={styles.time}>{slot.time}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
                 ))}
-              </ul>
-            </article>
+              </div>
+            </section>
           ))}
         </div>
 

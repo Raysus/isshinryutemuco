@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { navLinks, site } from '../content'
+import { trackTrialClassClick } from '../lib/analytics'
+import { assetUrl, withBase } from '../lib/paths'
 import styles from './Header.module.css'
 
 export function Header() {
@@ -25,7 +27,7 @@ export function Header() {
     <header className={scrolled || open ? `${styles.header} ${styles.scrolled}` : styles.header}>
       <div className={styles.inner}>
         <Link to="/" className={styles.brand} onClick={() => setOpen(false)}>
-          <img src="/images/logo.png" alt="" className={styles.logo} width={40} height={40} />
+          <img src={assetUrl('images/logo.png')} alt="" className={styles.logo} width={40} height={40} />
           <span className={styles.brandText}>
             <span className={styles.brandName}>{site.shortName}</span>
             <span className={styles.brandSub}>Temuco · OIKKA</span>
@@ -48,17 +50,37 @@ export function Header() {
           className={open ? `${styles.nav} ${styles.navOpen}` : styles.nav}
           aria-label="Principal"
         >
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={styles.link}
-              onClick={() => setOpen(false)}
-            >
-              {link.label}
-            </a>
-          ))}
-          <a href={site.cta.href} className={styles.cta} onClick={() => setOpen(false)}>
+          {navLinks.map((link) =>
+            link.href.startsWith('/') && !link.href.startsWith('/#') ? (
+              <Link
+                key={link.href}
+                to={link.href}
+                className={styles.link}
+                onClick={() => setOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.href}
+                href={withBase(link.href)}
+                className={styles.link}
+                onClick={() => setOpen(false)}
+              >
+                {link.label}
+              </a>
+            ),
+          )}
+          <a
+            href={site.cta.href}
+            className={styles.cta}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => {
+              trackTrialClassClick('header')
+              setOpen(false)
+            }}
+          >
             <span className={styles.ctaFull}>{site.cta.label}</span>
             <span className={styles.ctaShort}>Agendar</span>
           </a>

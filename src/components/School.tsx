@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { school } from '../content'
 import styles from './School.module.css'
 
@@ -12,6 +13,13 @@ export function School() {
           </h2>
           <p className={styles.lead}>{school.lead}</p>
           <p className={styles.body}>{school.body}</p>
+          <div className={styles.links}>
+            {school.links.map((link) => (
+              <Link key={link.href} className={styles.link} to={link.href}>
+                {link.label}
+              </Link>
+            ))}
+          </div>
         </div>
 
         <ol className={styles.principles}>

@@ -15,34 +15,31 @@ export type InfoPageContent = {
 export const infoPages: InfoPageContent[] = [
   {
     path: '/escuela/mision-y-vision',
-    title: 'Misión y visión',
+    title: 'Misión, visión e identidad',
     eyebrow: 'Nuestra escuela',
     lead:
-      'Formación integral en Okinawa Isshin Ryu para niños, adolescentes y adultos, con foco en valores, cuerpo, mente y espíritu.',
+      'Isshin Akira es el Hombu Dojo de Temuco: un espacio para crecer con Isshin Ryu, con mente clara y un solo corazón.',
     blocks: [
       {
-        type: 'paragraph',
-        text: 'Nuestra misión es difundir Okinawa Isshin Ryu Karate Kobudo Asociación a través de una formación integral, respetando la individualidad de cada alumno y guiándolo en la adquisición de valores para fortalecer su personalidad y enfrentar mejor las necesidades actuales.',
+        type: 'subsections',
+        items: [
+          {
+            title: 'Misión',
+            text: 'Enseñar Okinawa Isshin Ryu Karate y Kobudo con formación integral: técnica seria, valores y respeto por cada alumno. Queremos que niños, jóvenes y adultos fortalezcan cuerpo, carácter y comunidad en el dojo.',
+          },
+          {
+            title: 'Visión',
+            text: 'Ser el referente de Isshin Ryu en la Araucanía: un dojo confiable, abierto a la familia y conectado a OIKKA, donde cada persona disfrute el camino y mejore su calidad de vida.',
+          },
+          {
+            title: 'Identidad del dojo',
+            text: 'Isshin Akira significa “hombre de mente clara de un solo corazón”. Entrenamos con claridad, humildad y constancia. El keiko diario une técnica de Okinawa, camaradería y responsabilidad social.',
+          },
+        ],
       },
       {
         type: 'paragraph',
-        text: 'Las herramientas del Dojo Isshin Akira buscan mejorar la calidad de vida en lo emocional, mental, físico y deportivo: una experiencia de práctica física para conservar el cuerpo, buscar el ser interior y cultivar buenas conductas.',
-      },
-      {
-        type: 'paragraph',
-        text: 'El dojo está pensado como un lugar para crecer y formarnos, desarrollar cuerpo, mente y espíritu mediante entrenamiento, camaradería y experiencias compartidas, fomentando el ámbito social y valórico de la familia Isshin Ryu.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Nuestra visión es ser un dojo que fomente creatividad, proactividad, innovación y confianza; comprometido con que cada integrante se forme en lo personal, social y espiritual, disfrute lo que hace y mejore su calidad de vida.',
-      },
-      {
-        type: 'paragraph',
-        text: 'También aspiramos a ser reconocidos como entidad formativa y deportiva por la familia y la sociedad, abriendo actividades y programas a la comunidad con responsabilidad social.',
-      },
-      {
-        type: 'paragraph',
-        text: 'El Dojo Isshin Akira inicia su formación el 22 de octubre de 2003 y se inscribe el 6 de noviembre del mismo año en Chiledeportes, bajo la Ley N° 19.712 “Ley del Deporte”, registro N° 900399-1.',
+        text: 'El Dojo Isshin Akira inicia su formación el 22 de octubre de 2003 y se inscribe el 6 de noviembre del mismo año en Chiledeportes (Ley N° 19.712), registro N° 900399-1.',
       },
     ],
   },
@@ -79,17 +76,13 @@ export const infoPages: InfoPageContent[] = [
     path: '/escuela/equipo',
     title: 'Equipo',
     eyebrow: 'Nuestra escuela',
-    lead: 'Instructores y colaboradores del Dojo Isshin Akira.',
+    lead: 'Instructores del Dojo Isshin Akira Temuco.',
     blocks: [
       {
         type: 'people',
         items: [
-          { name: 'Carlos Alvear Torres', role: 'Sensei — Dojo Isshin Akira' },
-          { name: 'Alexis Alvear Constanzo', role: 'Sempai — Dojo Isshin Akira' },
-          { name: 'Sonny Oshiro', role: 'Representante cultural — Okinawa, Japón' },
-          { name: 'Cristian Jarpa Bucher', role: 'Sempai — Dojo Buchinkan' },
-          { name: 'Mario Rodríguez De Pablo', role: 'Terapeuta ocupacional' },
-          { name: 'Sigrid Alvear Constanzo', role: 'Kinesiología' },
+          { name: 'Carlos Alvear Torres', role: 'Sensei · Kyoshi — Dojo Isshin Akira' },
+          { name: 'Alexis Alvear Constanzo', role: 'Sensei — Dojo Isshin Akira' },
         ],
       },
     ],

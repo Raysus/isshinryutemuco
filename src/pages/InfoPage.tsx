@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
+import { FloatingWhatsApp } from '../components/FloatingWhatsApp'
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
 import { getInfoPage, type InfoBlock } from '../content/pages'
 import { site } from '../content'
+import { trackTrialClassClick } from '../lib/analytics'
 import styles from './InfoPage.module.css'
 
 function Blocks({ blocks }: { blocks: InfoBlock[] }) {
@@ -42,7 +44,9 @@ function Blocks({ blocks }: { blocks: InfoBlock[] }) {
             {block.items.map((item) => (
               <li key={item.title}>
                 <h3>{item.title}</h3>
-                {item.text ? <p>{item.text}</p> : (
+                {item.text ? (
+                  <p>{item.text}</p>
+                ) : (
                   <p className={styles.pending}>Contenido detallado próximamente.</p>
                 )}
               </li>
@@ -85,13 +89,20 @@ export function InfoPage({ path }: { path: string }) {
             <Link className={styles.back} to="/">
               Volver al inicio
             </Link>
-            <a className={styles.cta} href={site.cta.href}>
+            <a
+              className={styles.cta}
+              href={site.cta.href}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackTrialClassClick('info-page')}
+            >
               {site.cta.label}
             </a>
           </div>
         </div>
       </main>
       <Footer />
+      <FloatingWhatsApp />
     </>
   )
 }

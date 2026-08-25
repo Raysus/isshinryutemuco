@@ -1,5 +1,5 @@
-import { Contact } from '../components/Contact'
 import { Dojos } from '../components/Dojos'
+import { FloatingWhatsApp } from '../components/FloatingWhatsApp'
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
 import { Hero } from '../components/Hero'
@@ -23,9 +23,9 @@ export function HomePage() {
         <Schedule />
         <News />
         <Dojos />
-        <Contact />
       </main>
       <Footer />
+      <FloatingWhatsApp />
     </>
   )
 }

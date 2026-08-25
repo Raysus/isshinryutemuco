@@ -2,6 +2,7 @@ import { type FormEvent, useEffect, useState } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth'
 import { api, imageSrc, type NewsItem } from '../lib/api'
+import { getAnalyticsSnapshot } from '../lib/analytics'
 import styles from './Admin.module.css'
 
 export function AdminNewsPage() {
@@ -13,6 +14,14 @@ export function AdminNewsPage() {
   const [error, setError] = useState<string | null>(null)
   const [message, setMessage] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
+  const [stats, setStats] = useState(() => getAnalyticsSnapshot())
+
+  useEffect(() => {
+    const refresh = () => setStats(getAnalyticsSnapshot())
+    refresh()
+    const id = window.setInterval(refresh, 4000)
+    return () => window.clearInterval(id)
+  }, [])
 
   async function loadNews() {
     const data = await api.listNews()
@@ -91,6 +100,30 @@ export function AdminNewsPage() {
             </button>
           </div>
         </header>
+
+        <div className={styles.panelWide} style={{ marginBottom: '1.25rem' }}>
+          <h2 className={styles.sectionTitle}>Estadísticas del sitio</h2>
+          <p className={styles.help}>
+            Contadores locales de este navegador. Con Google Analytics (`VITE_GA_MEASUREMENT_ID`) también se
+            envían eventos globales.
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(12rem,1fr))', gap: '1rem', marginTop: '1rem' }}>
+            <div>
+              <p className={styles.help}>Ingresos / visitas</p>
+              <p style={{ fontSize: '1.75rem', fontWeight: 700, margin: 0 }}>{stats.pageViews}</p>
+              <p className={styles.help}>
+                Última: {stats.lastPageViewAt ? new Date(stats.lastPageViewAt).toLocaleString('es-CL') : '—'}
+              </p>
+            </div>
+            <div>
+              <p className={styles.help}>Clics “clase de prueba”</p>
+              <p style={{ fontSize: '1.75rem', fontWeight: 700, margin: 0 }}>{stats.trialClassClicks}</p>
+              <p className={styles.help}>
+                Último: {stats.lastTrialClickAt ? new Date(stats.lastTrialClickAt).toLocaleString('es-CL') : '—'}
+              </p>
+            </div>
+          </div>
+        </div>
 
         <form className={styles.panelWide} onSubmit={onCreate}>
           <h2 className={styles.sectionTitle}>Publicar noticia</h2>

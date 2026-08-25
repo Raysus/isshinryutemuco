@@ -5,14 +5,21 @@ import { AdminLoginPage } from './pages/AdminLoginPage'
 import { AdminNewsPage } from './pages/AdminNewsPage'
 import { HomePage } from './pages/HomePage'
 import { InfoPage } from './pages/InfoPage'
+import { ProposalsHub } from './proposals/ProposalsHub'
+import { TemucoCinematic } from './proposals/TemucoCinematic'
 import './App.css'
 
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <BrowserRouter
+        basename={import.meta.env.BASE_URL === '/' ? undefined : import.meta.env.BASE_URL.slice(0, -1)}
+      >
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/propuestas" element={<ProposalsHub />} />
+          <Route path="/propuesta-a" element={<Navigate to="/propuestas" replace />} />
+          <Route path="/propuesta-b" element={<TemucoCinematic />} />
           {infoPages.map((page) => (
             <Route
               key={page.path}

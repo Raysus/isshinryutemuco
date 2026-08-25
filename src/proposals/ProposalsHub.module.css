@@ -1,0 +1,74 @@
+.page {
+  min-height: 100svh;
+  padding: clamp(3rem, 8vw, 5rem) var(--space);
+  background:
+    radial-gradient(circle at 10% 0%, rgba(192, 16, 26, 0.12), transparent 40%),
+    var(--color-bg);
+}
+
+.inner {
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  margin: 0 0 0.6rem;
+  color: var(--color-accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0 0 0.85rem;
+  font-size: clamp(2.8rem, 8vw, 4.8rem);
+}
+
+.lead {
+  margin: 0 0 2.5rem;
+  max-width: 42ch;
+  color: var(--color-muted);
+}
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  display: grid;
+  gap: 0.45rem;
+  padding: 1.35rem 1.4rem;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.tag {
+  color: var(--color-accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  letter-spacing: 0.04em;
+  font-weight: 400;
+}
+
+.cardText {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
