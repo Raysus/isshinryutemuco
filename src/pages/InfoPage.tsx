@@ -1,13 +1,36 @@
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import { FloatingWhatsApp } from '../components/FloatingWhatsApp'
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
+import { InteractiveMission } from '../components/InteractiveMission'
+import { InteractiveTeam } from '../components/InteractiveTeam'
 import { getInfoPage, type InfoBlock } from '../content/pages'
 import { site } from '../content'
 import { trackTrialClassClick } from '../lib/analytics'
 import styles from './InfoPage.module.css'
 
-function Blocks({ blocks }: { blocks: InfoBlock[] }) {
+function Blocks({ blocks, path }: { blocks: InfoBlock[]; path: string }) {
+  if (path === '/escuela/mision-y-vision') {
+    const subsections = blocks.find((b) => b.type === 'subsections')
+    const footnote = blocks.find((b) => b.type === 'paragraph')
+    if (subsections && subsections.type === 'subsections') {
+      return (
+        <InteractiveMission
+          items={subsections.items}
+          footnote={footnote && footnote.type === 'paragraph' ? footnote.text : undefined}
+        />
+      )
+    }
+  }
+
+  if (path === '/escuela/equipo') {
+    const people = blocks.find((b) => b.type === 'people')
+    if (people && people.type === 'people') {
+      return <InteractiveTeam people={people.items} />
+    }
+  }
+
   return (
     <>
       {blocks.map((block, index) => {
@@ -78,12 +101,34 @@ export function InfoPage({ path }: { path: string }) {
     <>
       <Header />
       <main className={styles.main}>
-        <div className={styles.inner}>
-          <p className={styles.eyebrow}>{page.eyebrow}</p>
-          <h1 className={styles.title}>{page.title}</h1>
-          {page.lead ? <p className={styles.lead}>{page.lead}</p> : null}
+        <div className={styles.innerWide}>
+          <motion.p
+            className={styles.eyebrow}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            {page.eyebrow}
+          </motion.p>
+          <motion.h1
+            className={styles.title}
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.05 }}
+          >
+            {page.title}
+          </motion.h1>
+          {page.lead ? (
+            <motion.p
+              className={styles.lead}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+            >
+              {page.lead}
+            </motion.p>
+          ) : null}
           <div className={styles.body}>
-            <Blocks blocks={page.blocks} />
+            <Blocks blocks={page.blocks} path={path} />
           </div>
           <div className={styles.actions}>
             <Link className={styles.back} to="/">

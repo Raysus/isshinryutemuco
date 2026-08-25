@@ -1,0 +1,117 @@
+.root {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.cards {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 0.9rem;
+  row-gap: 0.2rem;
+  align-items: center;
+  text-align: left;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  padding: 1rem 1.05rem;
+  cursor: pointer;
+  overflow: hidden;
+  font: inherit;
+  color: inherit;
+}
+
+.cardOn {
+  border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-line));
+  background:
+    linear-gradient(120deg, rgba(192, 16, 26, 0.08), transparent 55%),
+    var(--color-surface);
+}
+
+.mark {
+  grid-row: 1 / span 2;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  background: var(--color-ink);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: 0.04em;
+}
+
+.card strong {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+.role {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.glow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--color-accent);
+}
+
+.detail {
+  padding: 1.4rem 1.25rem 1.55rem;
+  background: var(--color-surface-alt);
+  border-top: 3px solid var(--color-accent);
+  min-height: 14rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.45rem;
+  color: var(--color-accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.detail h3 {
+  margin: 0 0 0.35rem;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+}
+
+.detailRole {
+  margin: 0 0 0.85rem;
+  color: var(--color-muted);
+}
+
+.focus {
+  margin: 0 0 0.75rem;
+  font-weight: 700;
+}
+
+.bio {
+  margin: 0;
+  max-width: 48ch;
+}
+
+@media (min-width: 860px) {
+  .root {
+    grid-template-columns: 1fr 1.15fr;
+    align-items: start;
+    gap: 1.5rem;
+  }
+
+  .detail {
+    position: sticky;
+    top: calc(var(--header-height) + 1rem);
+  }
+}

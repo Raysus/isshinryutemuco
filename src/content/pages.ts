@@ -2,7 +2,7 @@ export type InfoBlock =
   | { type: 'paragraph'; text: string }
   | { type: 'list'; items: string[] }
   | { type: 'subsections'; items: { title: string; text?: string }[] }
-  | { type: 'people'; items: { name: string; role: string }[] }
+  | { type: 'people'; items: { name: string; role: string; focus?: string; bio?: string }[] }
 
 export type InfoPageContent = {
   path: string
@@ -81,8 +81,18 @@ export const infoPages: InfoPageContent[] = [
       {
         type: 'people',
         items: [
-          { name: 'Carlos Alvear Torres', role: 'Sensei · Kyoshi — Dojo Isshin Akira' },
-          { name: 'Alexis Alvear Constanzo', role: 'Sensei — Dojo Isshin Akira' },
+          {
+            name: 'Carlos Alvear Torres',
+            role: 'Sensei · Kyoshi — Dojo Isshin Akira',
+            focus: 'Dirección técnica y formación integral',
+            bio: 'Dirige el Hombu Dojo Isshin Akira en Temuco. Lidera la enseñanza de Karate y Kobudo Isshin Ryu con el sello OIKKA, acompañando a niños, jóvenes y adultos en el camino del dojo.',
+          },
+          {
+            name: 'Alexis Alvear Constanzo',
+            role: 'Sensei — Dojo Isshin Akira',
+            focus: 'Enseñanza diaria y acompañamiento',
+            bio: 'Sensei Alexis Alvear Constanzo colabora en la enseñanza y el día a día del Dojo Isshin Akira, acompañando la formación de la familia del dojo con constancia y cercanía.',
+          },
         ],
       },
     ],

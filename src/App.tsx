@@ -7,6 +7,7 @@ import { HomePage } from './pages/HomePage'
 import { InfoPage } from './pages/InfoPage'
 import { ProposalsHub } from './proposals/ProposalsHub'
 import { TemucoCinematic } from './proposals/TemucoCinematic'
+import { TemucoKinetic } from './proposals/TemucoKinetic'
 import './App.css'
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/propuestas" element={<ProposalsHub />} />
-          <Route path="/propuesta-a" element={<Navigate to="/propuestas" replace />} />
+          <Route path="/propuesta-a" element={<TemucoKinetic />} />
           <Route path="/propuesta-b" element={<TemucoCinematic />} />
           {infoPages.map((page) => (
             <Route

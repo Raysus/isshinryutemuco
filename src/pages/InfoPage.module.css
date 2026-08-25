@@ -10,6 +10,12 @@
   padding: 0 var(--space);
 }
 
+.innerWide {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 var(--space);
+}
+
 .eyebrow {
   margin: 0 0 0.65rem;
   color: var(--color-accent);

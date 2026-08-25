@@ -9,8 +9,14 @@ const items = [
     text: 'Landing actual: hero carrusel, programas, horarios, noticias y dojos.',
   },
   {
+    to: '/propuesta-a',
+    tag: 'Extra A',
+    title: 'Kinética con rail de progreso',
+    text: 'Scroll guiado, tabs animados con Framer Motion, paneles que reaccionan al hover y CTA dinámica.',
+  },
+  {
     to: '/propuesta-b',
-    tag: 'Extra',
+    tag: 'Extra B',
     title: 'Cinemática por capítulos',
     text: 'Pantallas a full viewport con scroll-snap, tipografía grande y progresión inmersiva sección a sección.',
   },
