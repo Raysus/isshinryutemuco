@@ -9,6 +9,7 @@ import {
 } from 'framer-motion'
 import {
   dojos,
+  fallbackNews,
   hero,
   heroSlides,
   programs,
@@ -64,8 +65,8 @@ export function TemucoHybrid() {
   useEffect(() => {
     void api
       .listNews()
-      .then(setNews)
-      .catch(() => setNews([]))
+      .then((data) => setNews(data.length > 0 ? data : fallbackNews))
+      .catch(() => setNews(fallbackNews))
   }, [])
 
   function go(id: string) {

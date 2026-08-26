@@ -1,3 +1,4 @@
+import type { NewsItem } from './lib/api'
 import { assetUrl } from './lib/paths'
 
 export const site = {
@@ -285,6 +286,41 @@ export const dojos = [
     whatsappHref: 'https://api.whatsapp.com/send?phone=56950707183',
   },
 ] as const
+
+/**
+ * Noticias de respaldo (estáticas) para entornos sin backend, como GitHub Pages.
+ * En local/producción con API, las noticias en vivo del panel las reemplazan.
+ * Edita estos textos para lo que quieras mostrar en el sitio estático.
+ */
+export const fallbackNews: NewsItem[] = [
+  {
+    id: 'fallback-seminario',
+    title: 'Seminario de Kobudo Isshin Ryu',
+    body: 'Jornada especial de armas tradicionales de Okinawa con instructores de la familia OIKKA. Consulta fechas y cupos en el Hombu Dojo.',
+    imageUrl: null,
+    createdAt: '2026-08-20T12:00:00.000Z',
+    updatedAt: '2026-08-20T12:00:00.000Z',
+    authorEmail: 'sistema',
+  },
+  {
+    id: 'fallback-examen',
+    title: 'Examen de grados 2026',
+    body: 'Preparación y fechas del próximo examen de cinturones para todas las etapas. Conversa con tu instructor para inscribirte.',
+    imageUrl: null,
+    createdAt: '2026-08-10T12:00:00.000Z',
+    updatedAt: '2026-08-10T12:00:00.000Z',
+    authorEmail: 'sistema',
+  },
+  {
+    id: 'fallback-bienvenida',
+    title: 'Bienvenida al nuevo sitio',
+    body: 'Estamos renovando la presencia digital del Dojo Isshin Akira Temuco. Pronto publicaremos más novedades de entrenamientos, exámenes y actividades.',
+    imageUrl: null,
+    createdAt: '2026-08-01T12:00:00.000Z',
+    updatedAt: '2026-08-01T12:00:00.000Z',
+    authorEmail: 'sistema',
+  },
+]
 
 export const footer = {
   links: [
