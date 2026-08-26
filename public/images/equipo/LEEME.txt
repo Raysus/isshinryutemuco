@@ -1,4 +1,4 @@
-Fotos del equipo (JPG/PNG). Nombres usados por la página de equipo:
-- carlos-alvear.png  (Carlos Alvear Torres) — incluida
-- alexis-alvear.png  (Alexis Alvear Constanzo) — incluida
-- beltias-vargas.png (Beltias Vargas) — PENDIENTE (no había foto en el sitio); mientras tanto se muestran sus iniciales.
+Fotos del equipo. Nombres usados por la página de equipo:
+- carlos-alvear.png   (Carlos Alvear Torres)
+- alexis-alvear.png   (Alexis Alvear Constanzo)
+- beltias-vargas.jpg  (Beltías Vargas Pedreros)
