@@ -253,9 +253,8 @@ export const schedule = {
           id: 'hombu-sabado',
           days: 'Sábado',
           slots: [
-            { ages: 'Clase', time: '10:30 hrs.' },
+            { ages: 'Kobudo OIKKA · Abierto a otros estilos', time: '10:30 hrs.' },
             { ages: 'Clase', time: '12:30 hrs.' },
-            { ages: 'Abierto a otros estilos', time: 'Kobudo OIKKA' },
           ],
         },
       ],
