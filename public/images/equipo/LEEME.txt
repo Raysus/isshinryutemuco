@@ -1,0 +1,5 @@
+Coloca aquí las fotos del equipo (JPG/PNG):
+- carlos-alvear.jpg
+- alexis-alvear.jpg
+- beltias-vargas.jpg
+Mientras no existan, se muestran las iniciales como respaldo.

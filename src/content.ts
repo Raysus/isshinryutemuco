@@ -7,11 +7,11 @@ export const site = {
   tagline: 'Karate y Kobudo Isshin Ryu OIKKA para niños, jóvenes y adultos',
   cta: {
     label: 'Agendar mi clase de prueba',
-    href: 'https://api.whatsapp.com/send?phone=56950707183&text=Hola%2C%20quiero%20agendar%20una%20clase%20de%20prueba',
+    href: 'https://api.whatsapp.com/send?phone=56967588846&text=Hola%2C%20quiero%20agendar%20una%20clase%20de%20prueba',
   },
   whatsapp: {
-    phone: '56950707183',
-    href: 'https://api.whatsapp.com/send?phone=56950707183&text=Hola%2C%20quiero%20agendar%20una%20clase%20de%20prueba',
+    phone: '56967588846',
+    href: 'https://api.whatsapp.com/send?phone=56967588846&text=Hola%2C%20quiero%20agendar%20una%20clase%20de%20prueba',
     label: 'Escribir por WhatsApp',
   },
 }
@@ -90,7 +90,7 @@ export const heroSlides = [
     id: 'noticias',
     kicker: 'Noticias',
     title: 'Lo que pasa en Isshin Akira',
-    text: 'Avisos de horarios, logros de alumnos y novedades del Hombu Dojo Temuco.',
+    text: 'Avisos de horarios, logros de alumnos y novedades del Honbu Dojo Temuco.',
   },
   {
     id: 'representacion',
@@ -236,7 +236,7 @@ export const schedule = {
     },
     {
       id: 'hombu',
-      name: 'Hombu Dojo · Portales #603',
+      name: 'Honbu Dojo · Portales #603',
       badge: 'Sede principal',
       period: 'Martes, jueves y sábado',
       note: null,
@@ -255,6 +255,7 @@ export const schedule = {
           slots: [
             { ages: 'Clase', time: '10:30 hrs.' },
             { ages: 'Clase', time: '12:30 hrs.' },
+            { ages: 'Abierto a otros estilos', time: 'Kobudo OIKKA' },
           ],
         },
       ],
@@ -265,14 +266,14 @@ export const schedule = {
 export const dojos = [
   {
     id: 'hombu-temuco',
-    name: 'Hombu Dojo Temuco',
+    name: 'Honbu Dojo Temuco',
     badge: 'Sede principal',
     address: 'Diego Portales 603, Temuco',
     phone: '+56 9 6758 8856',
     phoneHref: 'tel:+56967588856',
-    email: 'contacto@isshinryutemuco.cl',
-    emailHref: 'mailto:contacto@isshinryutemuco.cl',
-    whatsappHref: 'https://api.whatsapp.com/send?phone=56950707183',
+    email: 'senseialvear@gmail.com',
+    emailHref: 'mailto:senseialvear@gmail.com',
+    whatsappHref: 'https://api.whatsapp.com/send?phone=56967588846',
   },
   {
     id: 'vanguardia',
@@ -281,9 +282,9 @@ export const dojos = [
     address: 'Vanguardia Center · Local 114, Temuco',
     phone: '+56 9 5070 7183',
     phoneHref: 'tel:+56950707183',
-    email: 'contacto@isshinryutemuco.cl',
-    emailHref: 'mailto:contacto@isshinryutemuco.cl',
-    whatsappHref: 'https://api.whatsapp.com/send?phone=56950707183',
+    email: 'isshinakiratemuco@gmail.com',
+    emailHref: 'mailto:isshinakiratemuco@gmail.com',
+    whatsappHref: 'https://api.whatsapp.com/send?phone=56967588846',
   },
 ] as const
 
@@ -296,7 +297,7 @@ export const fallbackNews: NewsItem[] = [
   {
     id: 'fallback-seminario',
     title: 'Seminario de Kobudo Isshin Ryu',
-    body: 'Jornada especial de armas tradicionales de Okinawa con instructores de la familia OIKKA. Consulta fechas y cupos en el Hombu Dojo.',
+    body: 'Jornada especial de armas tradicionales de Okinawa con instructores de la familia OIKKA. Consulta fechas y cupos en el Honbu Dojo.',
     imageUrl: null,
     createdAt: '2026-08-20T12:00:00.000Z',
     updatedAt: '2026-08-20T12:00:00.000Z',
@@ -338,5 +339,5 @@ export const footer = {
     },
   ],
   note: 'Dojo Isshin Akira Temuco — Karate y Kobudo Isshin Ryu OIKKA',
-  email: 'contacto@isshinryutemuco.cl',
+  email: 'senseialvear@gmail.com',
 }

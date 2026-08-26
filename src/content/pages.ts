@@ -1,8 +1,19 @@
+import { assetUrl } from '../lib/paths'
+
+export type Person = {
+  name: string
+  role: string
+  focus?: string
+  bio?: string
+  grade?: string
+  photo?: string
+}
+
 export type InfoBlock =
   | { type: 'paragraph'; text: string }
   | { type: 'list'; items: string[] }
   | { type: 'subsections'; items: { title: string; text?: string }[] }
-  | { type: 'people'; items: { name: string; role: string; focus?: string; bio?: string }[] }
+  | { type: 'people'; items: Person[] }
 
 export type InfoPageContent = {
   path: string
@@ -18,7 +29,7 @@ export const infoPages: InfoPageContent[] = [
     title: 'Misión, visión e identidad',
     eyebrow: 'Nuestra escuela',
     lead:
-      'Isshin Akira es el Hombu Dojo de Temuco: un espacio para crecer con Isshin Ryu, con mente clara y un solo corazón.',
+      'Isshin Akira es el Honbu Dojo de Temuco: un espacio para crecer con Isshin Ryu, con mente clara y un solo corazón.',
     blocks: [
       {
         type: 'subsections',
@@ -84,14 +95,26 @@ export const infoPages: InfoPageContent[] = [
           {
             name: 'Carlos Alvear Torres',
             role: 'Sensei · Kyoshi — Dojo Isshin Akira',
+            grade: '7º Dan',
             focus: 'Dirección técnica y formación integral',
-            bio: 'Dirige el Hombu Dojo Isshin Akira en Temuco. Lidera la enseñanza de Karate y Kobudo Isshin Ryu con el sello OIKKA, acompañando a niños, jóvenes y adultos en el camino del dojo.',
+            bio: 'Dirige el Honbu Dojo Isshin Akira en Temuco. Lidera la enseñanza de Karate y Kobudo Isshin Ryu con el sello OIKKA, acompañando a niños, jóvenes y adultos en el camino del dojo.',
+            photo: assetUrl('images/equipo/carlos-alvear.jpg'),
           },
           {
             name: 'Alexis Alvear Constanzo',
             role: 'Sensei — Dojo Isshin Akira',
+            grade: '4º Dan',
             focus: 'Enseñanza diaria y acompañamiento',
             bio: 'Sensei Alexis Alvear Constanzo colabora en la enseñanza y el día a día del Dojo Isshin Akira, acompañando la formación de la familia del dojo con constancia y cercanía.',
+            photo: assetUrl('images/equipo/alexis-alvear.jpg'),
+          },
+          {
+            name: 'Beltias Vargas',
+            role: 'Senpai — Dojo Isshin Akira',
+            grade: '2º Dan',
+            focus: 'Apoyo en la enseñanza y formación del dojo',
+            bio: 'Senpai del Dojo Isshin Akira, acompaña el entrenamiento de Karate y Kobudo Isshin Ryu y apoya la formación de los alumnos con dedicación y respeto.',
+            photo: assetUrl('images/equipo/beltias-vargas.jpg'),
           },
         ],
       },
