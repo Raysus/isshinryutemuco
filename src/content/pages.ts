@@ -98,7 +98,7 @@ export const infoPages: InfoPageContent[] = [
             grade: '7º Dan',
             focus: 'Dirección técnica y formación integral',
             bio: 'Dirige el Honbu Dojo Isshin Akira en Temuco. Lidera la enseñanza de Karate y Kobudo Isshin Ryu con el sello OIKKA, acompañando a niños, jóvenes y adultos en el camino del dojo.',
-            photo: assetUrl('images/equipo/carlos-alvear.jpg'),
+            photo: assetUrl('images/equipo/carlos-alvear.png'),
           },
           {
             name: 'Alexis Alvear Constanzo',
@@ -106,7 +106,7 @@ export const infoPages: InfoPageContent[] = [
             grade: '4º Dan',
             focus: 'Enseñanza diaria y acompañamiento',
             bio: 'Sensei Alexis Alvear Constanzo colabora en la enseñanza y el día a día del Dojo Isshin Akira, acompañando la formación de la familia del dojo con constancia y cercanía.',
-            photo: assetUrl('images/equipo/alexis-alvear.jpg'),
+            photo: assetUrl('images/equipo/alexis-alvear.png'),
           },
           {
             name: 'Beltias Vargas',
@@ -114,7 +114,6 @@ export const infoPages: InfoPageContent[] = [
             grade: '2º Dan',
             focus: 'Apoyo en la enseñanza y formación del dojo',
             bio: 'Senpai del Dojo Isshin Akira, acompaña el entrenamiento de Karate y Kobudo Isshin Ryu y apoya la formación de los alumnos con dedicación y respeto.',
-            photo: assetUrl('images/equipo/beltias-vargas.jpg'),
           },
         ],
       },

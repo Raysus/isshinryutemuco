@@ -1,5 +1,4 @@
-Coloca aquí las fotos del equipo (JPG/PNG):
-- carlos-alvear.jpg
-- alexis-alvear.jpg
-- beltias-vargas.jpg
-Mientras no existan, se muestran las iniciales como respaldo.
+Fotos del equipo (JPG/PNG). Nombres usados por la página de equipo:
+- carlos-alvear.png  (Carlos Alvear Torres) — incluida
+- alexis-alvear.png  (Alexis Alvear Constanzo) — incluida
+- beltias-vargas.png (Beltias Vargas) — PENDIENTE (no había foto en el sitio); mientras tanto se muestran sus iniciales.
