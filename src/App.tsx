@@ -6,7 +6,7 @@ import { AdminNewsPage } from './pages/AdminNewsPage'
 import { HomePage } from './pages/HomePage'
 import { InfoPage } from './pages/InfoPage'
 import { ProposalsHub } from './proposals/ProposalsHub'
-import { TemucoCinematic } from './proposals/TemucoCinematic'
+import { TemucoHybrid } from './proposals/TemucoHybrid'
 import { TemucoKinetic } from './proposals/TemucoKinetic'
 import './App.css'
 
@@ -20,7 +20,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/propuestas" element={<ProposalsHub />} />
           <Route path="/propuesta-a" element={<TemucoKinetic />} />
-          <Route path="/propuesta-b" element={<TemucoCinematic />} />
+          <Route path="/propuesta-b" element={<TemucoHybrid />} />
           {infoPages.map((page) => (
             <Route
               key={page.path}

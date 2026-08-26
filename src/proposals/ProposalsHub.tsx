@@ -17,8 +17,8 @@ const items = [
   {
     to: '/propuesta-b',
     tag: 'Extra B',
-    title: 'Cinemática por capítulos',
-    text: 'Pantallas a full viewport con scroll-snap, tipografía grande y progresión inmersiva sección a sección.',
+    title: 'Híbrida: vigente + kinética',
+    text: 'Mezcla la estructura completa de la landing vigente (principios, noticias en vivo, contacto y pie) con la kinética de la Propuesta A: rail de progreso, animaciones y navegación por secciones.',
   },
 ] as const
 
