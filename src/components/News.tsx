@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { fallbackNews } from '../content'
 import { api, imageSrc, type NewsItem } from '../lib/api'
 import styles from './News.module.css'
 
@@ -13,7 +13,6 @@ function formatDate(value: string) {
 
 export function News() {
   const [items, setItems] = useState<NewsItem[]>([])
-  const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -21,10 +20,11 @@ export function News() {
     api
       .listNews()
       .then((data) => {
-        if (alive) setItems(data)
+        if (alive) setItems(data.length > 0 ? data : fallbackNews)
       })
-      .catch((err: Error) => {
-        if (alive) setError(err.message)
+      .catch(() => {
+        // Sin backend (p. ej. GitHub Pages) usamos noticias de respaldo.
+        if (alive) setItems(fallbackNews)
       })
       .finally(() => {
         if (alive) setLoading(false)
@@ -53,20 +53,6 @@ export function News() {
         </header>
 
         {loading ? <p className={styles.status}>Cargando noticias…</p> : null}
-        {error ? (
-          <p className={styles.status}>
-            No se pudieron cargar las noticias. Revisa que el servidor esté activo.
-          </p>
-        ) : null}
-
-        {!loading && !error && items.length === 0 ? (
-          <div className={styles.empty}>
-            <p>Aún no hay noticias publicadas.</p>
-            <Link className={styles.adminLink} to="/admin">
-              Ir al panel admin
-            </Link>
-          </div>
-        ) : null}
 
         {featured ? (
           <div className={styles.layout}>

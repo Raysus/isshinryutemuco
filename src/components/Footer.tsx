@@ -17,7 +17,6 @@ export function Footer() {
         </div>
 
         <nav className={styles.nav} aria-label="Enlaces del pie">
-          <Link to="/propuestas">Propuestas de diseño</Link>
           {footer.links.map((link) =>
             link.href.startsWith('http') ? (
               <a key={link.href} href={link.href} target="_blank" rel="noreferrer">
