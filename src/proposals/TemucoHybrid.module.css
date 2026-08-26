@@ -463,6 +463,16 @@
   width: 100%;
   height: clamp(9rem, 24vw, 13rem);
   background: linear-gradient(135deg, #c0101a, #7a0a11);
+  display: grid;
+  place-items: center;
+}
+
+.newsPlaceholder span {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
 .featuredCopy {

@@ -363,7 +363,9 @@ export function TemucoHybrid() {
                       loading="lazy"
                     />
                   ) : (
-                    <div className={styles.newsPlaceholder} aria-hidden="true" />
+                    <div className={styles.newsPlaceholder} aria-hidden="true">
+                      <span>Isshin Akira · Temuco</span>
+                    </div>
                   )}
                   <div className={styles.featuredCopy}>
                     <time className={styles.date} dateTime={featured.createdAt}>
