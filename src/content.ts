@@ -22,9 +22,8 @@ export const navLinks = [
   { label: 'Misión', href: '/escuela/mision-y-vision' },
   { label: 'Equipo', href: '/escuela/equipo' },
   { label: 'Programas', href: '/#programas' },
-  { label: 'Horarios', href: '/#horarios' },
   { label: 'Noticias', href: '/#noticias' },
-  { label: 'Dojos', href: '/#dojos' },
+  { label: 'Sedes', href: '/#sedes' },
 ] as const
 
 /**
@@ -191,99 +190,95 @@ export const programs = [
   },
 ] as const
 
-export const schedule = {
-  title: 'Horarios',
+export const sedesSection = {
+  title: 'Sedes y horarios',
   intro:
-    'Clases de Karate y Kobudo Isshin Akira en dos sedes de Temuco. Consulta también por horarios extra o adaptativos.',
+    'Dos sedes en Temuco para entrenar Karate y Kobudo Isshin Akira. Elige el día para ver los horarios de cada sede y encuentra cómo llegar.',
   note: 'Los horarios pueden variar; confirma por WhatsApp o correo antes de tu primera visita.',
-  venues: [
-    {
-      id: 'vanguardia',
-      name: 'Vanguardia Center · Local 114',
-      badge: 'Sucursal',
-      period: 'Lunes a sábado',
-      note: 'Horarios provisionales (por confirmar).',
-      groups: [
-        {
-          id: 'vanguardia-lun-mie',
-          days: 'Lunes y miércoles',
-          slots: [
-            { ages: '7 a 12 años', time: '18:00 hrs.' },
-            { ages: '13 años o más', time: '17:00 hrs.' },
-          ],
-        },
-        {
-          id: 'vanguardia-mar-jue',
-          days: 'Martes y jueves',
-          slots: [
-            { ages: '4 a 6 años', time: '16:00 y 18:00 hrs.' },
-            { ages: '7 a 12 años', time: '17:00 hrs.' },
-            { ages: '13 años o más', time: '19:00 hrs.' },
-            { ages: 'Jóvenes y adultos', time: '20:00 hrs.' },
-          ],
-        },
-        {
-          id: 'vanguardia-sabado',
-          days: 'Sábado',
-          slots: [
-            { ages: '4 a 6 años', time: '09:00 y 12:00 hrs.' },
-            { ages: '7 a 12 años', time: '11:00 hrs.' },
-            { ages: '13 años o más', time: '10:00 hrs.' },
-            { ages: 'Jóvenes y adultos', time: '13:15 hrs.' },
-          ],
-        },
-      ],
-    },
-    {
-      id: 'hombu',
-      name: 'Honbu Dojo · Portales #603',
-      badge: 'Sede principal',
-      period: 'Martes, jueves y sábado',
-      note: null,
-      groups: [
-        {
-          id: 'hombu-mar-jue',
-          days: 'Martes y jueves',
-          slots: [
-            { ages: 'Clase', time: '19:00 hrs.' },
-            { ages: 'Clase', time: '20:00 hrs.' },
-          ],
-        },
-        {
-          id: 'hombu-sabado',
-          days: 'Sábado',
-          slots: [
-            { ages: 'Kobudo OIKKA · Abierto a otros estilos', time: '10:30 hrs.' },
-            { ages: 'Clase', time: '12:30 hrs.' },
-          ],
-        },
-      ],
-    },
-  ],
 }
 
-export const dojos = [
+export const sedes = [
   {
-    id: 'hombu-temuco',
+    id: 'honbu',
     name: 'Honbu Dojo Temuco',
     badge: 'Sede principal',
     address: 'Diego Portales 603, Temuco',
+    period: 'Martes, jueves y sábado',
+    note: null as string | null,
     phone: '+56 9 6758 8856',
     phoneHref: 'tel:+56967588856',
     email: 'senseialvear@gmail.com',
     emailHref: 'mailto:senseialvear@gmail.com',
     whatsappHref: 'https://api.whatsapp.com/send?phone=56967588846',
+    mapEmbed:
+      'https://maps.google.com/maps?q=Diego%20Portales%20603%20Temuco%20Chile&t=&z=16&ie=UTF8&iwloc=&output=embed',
+    mapLink:
+      'https://www.google.com/maps/search/?api=1&query=Diego%20Portales%20603%20Temuco%20Chile',
+    groups: [
+      {
+        id: 'honbu-mar-jue',
+        days: 'Martes y jueves',
+        slots: [
+          { ages: 'Clase', time: '19:00 hrs.' },
+          { ages: 'Clase', time: '20:00 hrs.' },
+        ],
+      },
+      {
+        id: 'honbu-sabado',
+        days: 'Sábado',
+        slots: [
+          { ages: 'Kobudo OIKKA · Abierto a otros estilos', time: '10:30 hrs.' },
+          { ages: 'Clase', time: '12:30 hrs.' },
+        ],
+      },
+    ],
   },
   {
     id: 'vanguardia',
     name: 'Dojo Temuco — Vanguardia Center',
-    badge: 'Sucursal',
-    address: 'Vanguardia Center · Local 114, Temuco',
+    badge: 'Sede',
+    address: 'Av. San Martín 924 · Local 114, Temuco',
+    period: 'Lunes a sábado',
+    note: 'Horarios provisionales (por confirmar).' as string | null,
     phone: '+56 9 5070 7183',
     phoneHref: 'tel:+56950707183',
     email: 'isshinakiratemuco@gmail.com',
     emailHref: 'mailto:isshinakiratemuco@gmail.com',
     whatsappHref: 'https://api.whatsapp.com/send?phone=56967588846',
+    mapEmbed:
+      'https://maps.google.com/maps?q=Vanguardia%20Center%20San%20Martin%20924%20Temuco%20Chile&t=&z=16&ie=UTF8&iwloc=&output=embed',
+    mapLink:
+      'https://www.google.com/maps/search/?api=1&query=Vanguardia%20Center%20San%20Martin%20924%20Temuco%20Chile',
+    groups: [
+      {
+        id: 'vanguardia-lun-mie',
+        days: 'Lunes y miércoles',
+        slots: [
+          { ages: '7 a 12 años', time: '18:00 hrs.' },
+          { ages: '13 años o más', time: '17:00 hrs.' },
+        ],
+      },
+      {
+        id: 'vanguardia-mar-jue',
+        days: 'Martes y jueves',
+        slots: [
+          { ages: '4 a 6 años', time: '16:00 y 18:00 hrs.' },
+          { ages: '7 a 12 años', time: '17:00 hrs.' },
+          { ages: '13 años o más', time: '19:00 hrs.' },
+          { ages: 'Jóvenes y adultos', time: '20:00 hrs.' },
+        ],
+      },
+      {
+        id: 'vanguardia-sabado',
+        days: 'Sábado',
+        slots: [
+          { ages: '4 a 6 años', time: '09:00 y 12:00 hrs.' },
+          { ages: '7 a 12 años', time: '11:00 hrs.' },
+          { ages: '13 años o más', time: '10:00 hrs.' },
+          { ages: 'Jóvenes y adultos', time: '13:15 hrs.' },
+        ],
+      },
+    ],
   },
 ] as const
 
