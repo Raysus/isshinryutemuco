@@ -20,21 +20,27 @@ function VenueCard({ venue }: { venue: Venue }) {
         {venue.note ? <p className={styles.venueNote}>{venue.note}</p> : null}
       </header>
 
-      <div className={styles.dayTabs} role="tablist" aria-label={`Días · ${venue.name}`}>
+      <p className={styles.dayHint}>Elige el día</p>
+      <div className={styles.dayNav} role="tablist" aria-label={`Días · ${venue.name}`}>
         {venue.groups.map((g, i) => (
-          <button
+          <motion.button
             key={g.id}
             type="button"
             role="tab"
             aria-selected={i === active}
-            className={i === active ? styles.dayTabOn : styles.dayTab}
+            className={i === active ? `${styles.chip} ${styles.chipOn}` : styles.chip}
             onClick={() => setActive(i)}
+            whileTap={{ scale: 0.96 }}
           >
-            {g.days}
             {i === active ? (
-              <motion.span layoutId={`sched-line-${venue.id}`} className={styles.tabLine} />
+              <motion.span
+                layoutId={`sched-chip-${venue.id}`}
+                className={styles.chipBg}
+                transition={{ type: 'spring', stiffness: 420, damping: 34 }}
+              />
             ) : null}
-          </button>
+            <span className={styles.chipText}>{g.days}</span>
+          </motion.button>
         ))}
       </div>
 
