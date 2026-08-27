@@ -33,6 +33,18 @@
   min-width: 0;
 }
 
+.right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .right {
+    gap: 0.6rem;
+  }
+}
+
 .logo {
   width: 2.4rem;
   height: 2.4rem;

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { navLinks, site } from '../content'
 import { trackTrialClassClick } from '../lib/analytics'
 import { assetUrl, withBase } from '../lib/paths'
+import { AccountMenu } from './AccountMenu'
 import styles from './Header.module.css'
 
 export function Header() {
@@ -34,57 +35,61 @@ export function Header() {
           </span>
         </Link>
 
-        <button
-          type="button"
-          className={styles.menuButton}
-          aria-expanded={open}
-          aria-controls="nav-principal"
-          onClick={() => setOpen((value) => !value)}
-        >
-          <span className={styles.menuIcon} aria-hidden="true" />
-          {open ? 'Cerrar' : 'Menú'}
-        </button>
-
-        <nav
-          id="nav-principal"
-          className={open ? `${styles.nav} ${styles.navOpen}` : styles.nav}
-          aria-label="Principal"
-        >
-          {navLinks.map((link) =>
-            link.href.startsWith('/') && !link.href.startsWith('/#') ? (
-              <Link
-                key={link.href}
-                to={link.href}
-                className={styles.link}
-                onClick={() => setOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ) : (
-              <a
-                key={link.href}
-                href={withBase(link.href)}
-                className={styles.link}
-                onClick={() => setOpen(false)}
-              >
-                {link.label}
-              </a>
-            ),
-          )}
-          <a
-            href={site.cta.href}
-            className={styles.cta}
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => {
-              trackTrialClassClick('header')
-              setOpen(false)
-            }}
+        <div className={styles.right}>
+          <nav
+            id="nav-principal"
+            className={open ? `${styles.nav} ${styles.navOpen}` : styles.nav}
+            aria-label="Principal"
           >
-            <span className={styles.ctaFull}>{site.cta.label}</span>
-            <span className={styles.ctaShort}>Agendar</span>
-          </a>
-        </nav>
+            {navLinks.map((link) =>
+              link.href.startsWith('/') && !link.href.startsWith('/#') ? (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className={styles.link}
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={withBase(link.href)}
+                  className={styles.link}
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </a>
+              ),
+            )}
+            <a
+              href={site.cta.href}
+              className={styles.cta}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => {
+                trackTrialClassClick('header')
+                setOpen(false)
+              }}
+            >
+              <span className={styles.ctaFull}>{site.cta.label}</span>
+              <span className={styles.ctaShort}>Agendar</span>
+            </a>
+          </nav>
+
+          <AccountMenu onNavigate={() => setOpen(false)} />
+
+          <button
+            type="button"
+            className={styles.menuButton}
+            aria-expanded={open}
+            aria-controls="nav-principal"
+            onClick={() => setOpen((value) => !value)}
+          >
+            <span className={styles.menuIcon} aria-hidden="true" />
+            {open ? 'Cerrar' : 'Menú'}
+          </button>
+        </div>
       </div>
     </header>
   )
