@@ -79,9 +79,43 @@
 }
 
 .placeholder {
+  display: grid;
+  place-items: center;
+  gap: 0.75rem;
   background:
-    linear-gradient(135deg, #2a2a2a, #6b1515 70%),
-    var(--color-ink);
+    radial-gradient(circle at 30% 25%, rgba(192, 16, 26, 0.35), transparent 55%),
+    linear-gradient(135deg, #1c1c1c, #101010);
+  position: relative;
+  overflow: hidden;
+}
+
+.placeholder::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.03) 0,
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 1px,
+    transparent 10px
+  );
+}
+
+.placeholderLogo {
+  position: relative;
+  width: clamp(4rem, 10vw, 5.5rem);
+  height: auto;
+  opacity: 0.92;
+}
+
+.placeholderText {
+  position: relative;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
 .date {
@@ -112,8 +146,17 @@
 }
 
 .sideItem {
-  padding: 1.1rem 0;
+  padding: 1.1rem 0.9rem;
   border-bottom: 1px solid var(--color-line);
+  border-left: 2px solid transparent;
+  transition: border-left-color 0.2s var(--ease), background 0.2s var(--ease),
+    padding-left 0.2s var(--ease);
+}
+
+.sideItem:hover {
+  border-left-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 5%, transparent);
+  padding-left: 1.15rem;
 }
 
 .sideTitle {

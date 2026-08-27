@@ -1,19 +1,23 @@
 import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 import { programs, programsIntro } from '../content'
 import styles from './Programs.module.css'
 
+const INTERVAL_MS = 7000
+
 export function Programs() {
   const [index, setIndex] = useState(0)
+  const [paused, setPaused] = useState(false)
   const program = programs[index]
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduced) return
+    if (reduced || paused) return
     const id = window.setInterval(() => {
       setIndex((current) => (current + 1) % programs.length)
-    }, 7000)
+    }, INTERVAL_MS)
     return () => window.clearInterval(id)
-  }, [])
+  }, [paused])
 
   function go(delta: number) {
     setIndex((current) => (current + delta + programs.length) % programs.length)
@@ -22,15 +26,30 @@ export function Programs() {
   return (
     <section id="programas" className={styles.section} aria-labelledby="programas-title">
       <div className={styles.inner}>
-        <header className={styles.header}>
+        <motion.header
+          className={styles.header}
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        >
           <p className={styles.eyebrow}>Formación por etapas</p>
           <h2 id="programas-title" className={styles.title}>
             Programa de entrenamiento
           </h2>
           <p className={styles.intro}>{programsIntro}</p>
-        </header>
+        </motion.header>
 
-        <div className={styles.carousel} aria-roledescription="carrusel">
+        <motion.div
+          className={styles.carousel}
+          aria-roledescription="carrusel"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        >
           <article className={styles.slide} key={program.id}>
             <div className={styles.media}>
               <img className={styles.image} src={program.image} alt="" loading="lazy" />
@@ -49,8 +68,22 @@ export function Programs() {
             </div>
           </article>
 
+          <div className={styles.progress} aria-hidden="true">
+            <span
+              key={index}
+              className={
+                paused ? `${styles.progressFill} ${styles.progressPaused}` : styles.progressFill
+              }
+            />
+          </div>
+
           <div className={styles.controls}>
-            <button type="button" className={styles.navBtn} onClick={() => go(-1)} aria-label="Etapa anterior">
+            <button
+              type="button"
+              className={styles.navBtn}
+              onClick={() => go(-1)}
+              aria-label="Etapa anterior"
+            >
               ←
             </button>
             <div className={styles.dots} role="tablist" aria-label="Etapas del programa">
@@ -66,11 +99,16 @@ export function Programs() {
                 />
               ))}
             </div>
-            <button type="button" className={styles.navBtn} onClick={() => go(1)} aria-label="Etapa siguiente">
+            <button
+              type="button"
+              className={styles.navBtn}
+              onClick={() => go(1)}
+              aria-label="Etapa siguiente"
+            >
               →
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

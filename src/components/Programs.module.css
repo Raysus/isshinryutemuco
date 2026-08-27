@@ -57,6 +57,11 @@
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+  transition: transform 0.6s var(--ease);
+}
+
+.media:hover .image {
+  transform: scale(1.05);
 }
 
 .index {
@@ -111,6 +116,34 @@
   background: var(--color-accent);
 }
 
+.progress {
+  height: 3px;
+  background: var(--color-line);
+  overflow: hidden;
+}
+
+.progressFill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--color-accent);
+  transform-origin: left;
+  animation: progressGrow 7s linear forwards;
+}
+
+.progressPaused {
+  animation-play-state: paused;
+}
+
+@keyframes progressGrow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
 .controls {
   display: flex;
   align-items: center;
@@ -119,19 +152,25 @@
 }
 
 .navBtn {
-  min-width: 2.75rem;
-  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.85rem;
+  min-height: 2.85rem;
   border: 1px solid var(--color-line);
+  border-radius: 999px;
   background: var(--color-surface);
   color: var(--color-ink);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   cursor: pointer;
-  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease),
+    transform 0.2s var(--ease);
 }
 
 .navBtn:hover {
   border-color: var(--color-accent);
   background: color-mix(in srgb, var(--color-accent) 8%, white);
+  transform: translateY(-1px);
 }
 
 .dots {
@@ -174,5 +213,14 @@
 @media (prefers-reduced-motion: reduce) {
   .slide {
     animation: none;
+  }
+
+  .progressFill {
+    animation: none;
+    transform: scaleX(1);
+  }
+
+  .media:hover .image {
+    transform: none;
   }
 }
