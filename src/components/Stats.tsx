@@ -23,7 +23,7 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
       setCurrent(value)
       return
     }
-    const duration = 1100
+    const duration = 1700
     const start = performance.now()
     let raf = 0
     const tick = (now: number) => {
