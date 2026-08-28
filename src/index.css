@@ -88,25 +88,34 @@ p {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  animation: ctaGlow 2.8s var(--ease) infinite;
+  animation: ctaGlow 2.6s var(--ease) infinite, ctaBreathe 2.6s var(--ease) infinite;
 }
 
 .ctaPulse::after {
   content: '';
   position: absolute;
   top: 0;
-  left: -75%;
-  width: 55%;
+  left: -80%;
+  z-index: 0;
+  width: 60%;
   height: 100%;
   background: linear-gradient(
     120deg,
     transparent,
-    rgba(255, 255, 255, 0.38),
+    rgba(255, 255, 255, 0.55),
     transparent
   );
   transform: skewX(-20deg);
-  animation: ctaShine 4.2s ease-in-out infinite;
+  animation: ctaShine 3.6s ease-in-out infinite;
   pointer-events: none;
+}
+
+/* El texto del botón se mantiene sobre el destello. */
+.ctaLabel {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
 }
 
 .ctaArrow {
@@ -122,19 +131,30 @@ p {
 @keyframes ctaGlow {
   0%,
   100% {
-    box-shadow: 0 8px 22px -10px rgba(192, 16, 26, 0.55);
+    box-shadow: 0 6px 18px -8px rgba(192, 16, 26, 0.5);
   }
   50% {
-    box-shadow: 0 0 0 5px rgba(192, 16, 26, 0.16),
-      0 14px 32px -8px rgba(192, 16, 26, 0.75);
+    box-shadow: 0 0 0 6px rgba(192, 16, 26, 0.22),
+      0 0 26px 2px rgba(240, 217, 120, 0.4),
+      0 14px 32px -6px rgba(192, 16, 26, 0.75);
+  }
+}
+
+@keyframes ctaBreathe {
+  0%,
+  100% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.035;
   }
 }
 
 @keyframes ctaShine {
   0% {
-    left: -75%;
+    left: -80%;
   }
-  35%,
+  40%,
   100% {
     left: 130%;
   }
@@ -143,6 +163,7 @@ p {
 @media (prefers-reduced-motion: reduce) {
   .ctaPulse {
     animation: none;
+    scale: 1;
   }
 
   .ctaPulse::after {

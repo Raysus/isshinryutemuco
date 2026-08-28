@@ -67,9 +67,11 @@ export function Hero() {
             rel="noreferrer"
             onClick={() => trackTrialClassClick('hero')}
           >
-            {site.cta.label}
-            <span className="ctaArrow" aria-hidden="true">
-              →
+            <span className="ctaLabel">
+              {site.cta.label}
+              <span className="ctaArrow" aria-hidden="true">
+                →
+              </span>
             </span>
           </a>
           <a href={homeHash('programas')} className={styles.secondary}>

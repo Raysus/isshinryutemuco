@@ -37,9 +37,11 @@ export function CtaBand() {
               rel="noreferrer"
               onClick={() => trackTrialClassClick('cta-band')}
             >
-              {site.cta.label}
-              <span className="ctaArrow" aria-hidden="true">
-                →
+              <span className="ctaLabel">
+                {site.cta.label}
+                <span className="ctaArrow" aria-hidden="true">
+                  →
+                </span>
               </span>
             </a>
             <a className={styles.secondary} href={homeHash('sedes')}>
