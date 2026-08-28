@@ -83,30 +83,34 @@ p {
   color: var(--color-ink);
 }
 
-/* CTA principal llamativa: usada por los botones "Agendar mi clase de prueba". */
+/* CTA principal llamativa: usada por los botones "Agendar mi clase de prueba".
+   Efectos basados en transform/opacity (compositados) + halo estático permanente. */
 .ctaPulse {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  animation: ctaGlow 2.6s var(--ease) infinite, ctaBreathe 2.6s var(--ease) infinite;
+  transform-origin: center;
+  box-shadow: 0 0 0 3px rgba(240, 217, 120, 0.28),
+    0 10px 28px -6px rgba(192, 16, 26, 0.7);
+  animation: ctaBreathe 2.4s var(--ease) infinite;
 }
 
 .ctaPulse::after {
   content: '';
   position: absolute;
   top: 0;
-  left: -80%;
+  left: 0;
   z-index: 0;
-  width: 60%;
+  width: 55%;
   height: 100%;
   background: linear-gradient(
     120deg,
     transparent,
-    rgba(255, 255, 255, 0.55),
+    rgba(255, 255, 255, 0.75),
     transparent
   );
-  transform: skewX(-20deg);
-  animation: ctaShine 3.6s ease-in-out infinite;
+  transform: translateX(-200%) skewX(-20deg);
+  animation: ctaShine 3.4s ease-in-out infinite;
   pointer-events: none;
 }
 
@@ -124,46 +128,37 @@ p {
   transition: transform 0.2s var(--ease);
 }
 
-.ctaPulse:hover .ctaArrow {
-  transform: translateX(5px);
+.ctaPulse:hover {
+  filter: brightness(1.08);
 }
 
-@keyframes ctaGlow {
-  0%,
-  100% {
-    box-shadow: 0 6px 18px -8px rgba(192, 16, 26, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 0 6px rgba(192, 16, 26, 0.22),
-      0 0 26px 2px rgba(240, 217, 120, 0.4),
-      0 14px 32px -6px rgba(192, 16, 26, 0.75);
-  }
+.ctaPulse:hover .ctaArrow {
+  transform: translateX(5px);
 }
 
 @keyframes ctaBreathe {
   0%,
   100% {
-    scale: 1;
+    transform: scale(1);
   }
   50% {
-    scale: 1.035;
+    transform: scale(1.05);
   }
 }
 
 @keyframes ctaShine {
   0% {
-    left: -80%;
+    transform: translateX(-200%) skewX(-20deg);
   }
-  40%,
+  45%,
   100% {
-    left: 130%;
+    transform: translateX(360%) skewX(-20deg);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .ctaPulse {
     animation: none;
-    scale: 1;
   }
 
   .ctaPulse::after {
