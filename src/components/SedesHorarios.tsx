@@ -99,12 +99,18 @@ function SedeCard({ sede, index }: { sede: Sede; index: number }) {
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
               >
-                {group.slots.map((slot) => (
-                  <li key={`${group.id}-${slot.ages}-${slot.time}`}>
-                    <span className={styles.ages}>{slot.ages}</span>
-                    <span className={styles.time}>{slot.time}</span>
-                  </li>
-                ))}
+                {group.slots.map((slot) => {
+                  const level = (slot as { level?: string }).level
+                  return (
+                    <li key={`${group.id}-${slot.ages}-${slot.time}`}>
+                      <span className={styles.slotInfo}>
+                        <span className={styles.ages}>{slot.ages}</span>
+                        {level ? <span className={styles.level}>{level}</span> : null}
+                      </span>
+                      <span className={styles.time}>{slot.time}</span>
+                    </li>
+                  )
+                })}
               </motion.ul>
             </AnimatePresence>
           </div>

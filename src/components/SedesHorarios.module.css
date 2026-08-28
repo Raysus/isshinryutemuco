@@ -229,7 +229,7 @@
 
 .slots li {
   display: flex;
-  align-items: baseline;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 1rem;
   padding-top: 0.6rem;
@@ -241,9 +241,23 @@
   border-top: 0;
 }
 
+.slotInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
 .ages {
+  color: var(--color-ink);
+  font-weight: 500;
+  font-size: 0.92rem;
+}
+
+.level {
   color: var(--color-muted);
-  font-size: 0.9rem;
+  font-size: 0.78rem;
+  line-height: 1.35;
 }
 
 .time {
