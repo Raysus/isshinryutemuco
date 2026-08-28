@@ -62,12 +62,15 @@ export function Hero() {
         <div className={styles.actions}>
           <a
             href={site.cta.href}
-            className={styles.cta}
+            className={`${styles.cta} ctaPulse`}
             target="_blank"
             rel="noreferrer"
             onClick={() => trackTrialClassClick('hero')}
           >
             {site.cta.label}
+            <span className="ctaArrow" aria-hidden="true">
+              →
+            </span>
           </a>
           <a href={homeHash('programas')} className={styles.secondary}>
             Ver programas

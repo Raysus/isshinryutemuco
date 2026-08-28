@@ -21,28 +21,34 @@ export function CtaBand() {
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className={styles.eyebrow}>Tu primera clase</p>
+          <p className={styles.eyebrow}>Sé parte del dojo</p>
           <h2 id="cta-title" className={styles.title}>
-            Da el primer paso en el dojo
+            Tu lugar en el tatami te espera
           </h2>
           <p className={styles.text}>
-            Agenda una clase de prueba y vive el Karate y Kobudo Isshin Ryu en Temuco.
-            Formación para niños, jóvenes y adultos, con un solo corazón.
+            Únete a la familia Isshin Akira: entrena Karate y Kobudo Isshin Ryu en Temuco,
+            para niños, jóvenes y adultos. Da el primer paso hoy y crece con un solo corazón.
           </p>
           <div className={styles.actions}>
             <a
-              className={styles.primary}
+              className={`${styles.primary} ctaPulse`}
               href={site.cta.href}
               target="_blank"
               rel="noreferrer"
               onClick={() => trackTrialClassClick('cta-band')}
             >
               {site.cta.label}
+              <span className="ctaArrow" aria-hidden="true">
+                →
+              </span>
             </a>
             <a className={styles.secondary} href={homeHash('sedes')}>
               Ver sedes y horarios
             </a>
           </div>
+          <p className={styles.microcopy}>
+            Clase de prueba sin compromiso · te esperamos en el tatami
+          </p>
         </motion.div>
       </div>
     </section>

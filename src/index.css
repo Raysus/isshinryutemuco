@@ -83,6 +83,77 @@ p {
   color: var(--color-ink);
 }
 
+/* CTA principal llamativa: usada por los botones "Agendar mi clase de prueba". */
+.ctaPulse {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  animation: ctaGlow 2.8s var(--ease) infinite;
+}
+
+.ctaPulse::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.38),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: ctaShine 4.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.ctaArrow {
+  display: inline-block;
+  margin-left: 0.55rem;
+  transition: transform 0.2s var(--ease);
+}
+
+.ctaPulse:hover .ctaArrow {
+  transform: translateX(5px);
+}
+
+@keyframes ctaGlow {
+  0%,
+  100% {
+    box-shadow: 0 8px 22px -10px rgba(192, 16, 26, 0.55);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(192, 16, 26, 0.16),
+      0 14px 32px -8px rgba(192, 16, 26, 0.75);
+  }
+}
+
+@keyframes ctaShine {
+  0% {
+    left: -75%;
+  }
+  35%,
+  100% {
+    left: 130%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ctaPulse {
+    animation: none;
+  }
+
+  .ctaPulse::after {
+    display: none;
+  }
+
+  .ctaArrow {
+    transition: none;
+  }
+}
+
 .skipLink {
   position: absolute;
   left: var(--space);
