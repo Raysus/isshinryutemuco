@@ -1,4 +1,4 @@
-import type { NewsItem } from './lib/api'
+import type { EventItem, GalleryItem, NewsItem, VideosDoc } from './lib/api'
 import { assetUrl } from './lib/paths'
 
 export const site = {
@@ -23,6 +23,9 @@ export const navLinks = [
   { label: 'Equipo', href: '/escuela/equipo' },
   { label: 'Programas', href: '/#programas' },
   { label: 'Noticias', href: '/#noticias' },
+  { label: 'Eventos', href: '/#eventos' },
+  { label: 'Videos', href: '/#videos' },
+  { label: 'Galería', href: '/#galeria' },
   { label: 'Sedes', href: '/#sedes' },
 ] as const
 
@@ -348,6 +351,17 @@ export const fallbackNews: NewsItem[] = [
     authorEmail: 'sistema',
   },
 ]
+
+
+export const fallbackVideos: VideosDoc = {
+  title: 'Videos',
+  intro: 'Kata, kihon y actividades del Dojo Isshin Akira.',
+  items: [],
+}
+
+export const fallbackEvents: EventItem[] = []
+
+export const fallbackGallery: GalleryItem[] = []
 
 export const footer = {
   links: [

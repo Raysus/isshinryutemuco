@@ -2,6 +2,8 @@ import bcrypt from 'bcryptjs'
 import fs from 'node:fs'
 import path from 'node:path'
 import { randomUUID } from 'node:crypto'
+import { ensureMediaFiles, type MediaSeed } from './media.js'
+import { ensureEventsFile } from './events.js'
 
 export type User = {
   id: string
@@ -32,6 +34,18 @@ function newsPath(rootDir: string) {
   return path.join(dataDir(rootDir), 'news.json')
 }
 
+
+export function defaultMediaSeed(): MediaSeed {
+  return {
+    gallery: [],
+    videos: {
+      title: 'Videos',
+      intro: 'Kata, kihon y actividades del Dojo Isshin Akira.',
+      items: [],
+    },
+  }
+}
+
 export function ensureDataFiles(rootDir: string) {
   fs.mkdirSync(dataDir(rootDir), { recursive: true })
   if (!fs.existsSync(usersPath(rootDir))) {
@@ -51,6 +65,8 @@ export function ensureDataFiles(rootDir: string) {
     ]
     fs.writeFileSync(newsPath(rootDir), `${JSON.stringify(seed, null, 2)}\n`, 'utf8')
   }
+  ensureMediaFiles(rootDir, defaultMediaSeed())
+  ensureEventsFile(rootDir)
 }
 
 export function readUsers(rootDir: string): User[] {

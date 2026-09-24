@@ -31,7 +31,7 @@ export function News() {
     api
       .listNews()
       .then((data) => {
-        if (alive) setItems(data.length > 0 ? data : fallbackNews)
+        if (alive) setItems(data)
       })
       .catch(() => {
         // Sin backend (p. ej. GitHub Pages) usamos noticias de respaldo.
@@ -70,6 +70,10 @@ export function News() {
         </motion.header>
 
         {loading ? <p className={styles.status}>Cargando noticias…</p> : null}
+
+        {!loading && !featured ? (
+          <p className={styles.status}>Aún no hay noticias publicadas.</p>
+        ) : null}
 
         {featured ? (
           <div className={styles.layout}>

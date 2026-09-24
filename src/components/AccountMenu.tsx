@@ -88,7 +88,7 @@ export function AccountMenu({ onNavigate }: { onNavigate?: () => void }) {
                 onNavigate?.()
               }}
             >
-              <span>Panel de noticias</span>
+              <span>Panel</span>
               <NewsIcon />
             </Link>
           </div>

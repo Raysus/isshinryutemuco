@@ -3,11 +3,14 @@ import { FloatingWhatsApp } from '../components/FloatingWhatsApp'
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
 import { Hero } from '../components/Hero'
+import { Events } from '../components/Events'
+import { Gallery } from '../components/Gallery'
 import { News } from '../components/News'
 import { Programs } from '../components/Programs'
 import { School } from '../components/School'
 import { SedesHorarios } from '../components/SedesHorarios'
 import { Stats } from '../components/Stats'
+import { Videos } from '../components/Videos'
 import '../App.css'
 
 export function HomePage() {
@@ -23,6 +26,9 @@ export function HomePage() {
         <School />
         <Programs />
         <News />
+        <Events />
+        <Videos />
+        <Gallery />
         <SedesHorarios />
         <CtaBand />
       </main>

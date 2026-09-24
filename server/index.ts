@@ -16,6 +16,8 @@ import {
   writeNews,
   type NewsItem,
 } from './store.js'
+import { registerMediaRoutes } from './media-routes.js'
+import { registerEventRoutes } from './events-routes.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const rootDir = path.resolve(__dirname, '..')
@@ -23,6 +25,7 @@ const uploadsDir = path.join(rootDir, 'uploads')
 const port = Number(process.env.PORT ?? 3001)
 const isProd = process.env.NODE_ENV === 'production'
 const sessionSecret = process.env.SESSION_SECRET ?? 'dev-change-me-isshin-akira'
+const cookieSecure = process.env.COOKIE_SECURE === 'true'
 
 ensureDataFiles(rootDir)
 ensureAdminUser(rootDir)
@@ -54,7 +57,7 @@ app.use(
     cookie: {
       httpOnly: true,
       sameSite: 'lax',
-      secure: isProd,
+      secure: cookieSecure,
       maxAge: 1000 * 60 * 60 * 24 * 7,
     },
   }),
@@ -78,6 +81,27 @@ const upload = multer({
     cb(null, true)
   },
 })
+
+const videoUpload = multer({
+  storage: multer.diskStorage({
+    destination: (_req, _file, cb) => cb(null, uploadsDir),
+    filename: (_req, file, cb) => {
+      const ext = path.extname(file.originalname).toLowerCase() || '.mp4'
+      cb(null, `${Date.now()}-${randomUUID()}${ext}`)
+    },
+  }),
+  limits: { fileSize: 100 * 1024 * 1024 },
+  fileFilter: (_req, file, cb) => {
+    const ext = path.extname(file.originalname).toLowerCase()
+    const allowed = new Set(['.mp4', '.webm', '.mov', '.m4v'])
+    if (file.mimetype.startsWith('video/') || allowed.has(ext)) {
+      cb(null, true)
+      return
+    }
+    cb(new Error('Solo se permiten videos MP4, WebM o MOV'))
+  },
+})
+
 
 function requireAuth(
   req: express.Request,
@@ -192,6 +216,9 @@ app.put('/api/news/:id', requireAuth, upload.single('image'), (req, res) => {
   res.json(news[index])
 })
 
+registerMediaRoutes(app, rootDir, requireAuth, upload, videoUpload)
+registerEventRoutes(app, rootDir, requireAuth, upload)
+
 app.delete('/api/news/:id', requireAuth, (req, res) => {
   const news = readNews(rootDir)
   const next = news.filter((item) => item.id !== req.params.id)
@@ -222,6 +249,9 @@ if (isProd) {
   })
 }
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`API listening on http://127.0.0.1:${port}`)
 })
+server.timeout = 15 * 60 * 1000
+server.headersTimeout = 16 * 60 * 1000
+server.requestTimeout = 16 * 60 * 1000

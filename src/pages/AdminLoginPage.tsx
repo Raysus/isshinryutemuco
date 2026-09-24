@@ -35,7 +35,7 @@ export function AdminLoginPage() {
         <p className={styles.eyebrow}>Acceso restringido</p>
         <h1 className={styles.title}>Admin Isshin Akira</h1>
         <p className={styles.help}>
-          Solo instructores/administradores pueden publicar noticias.
+          Sensei y administradores pueden publicar noticias, eventos, galería y videos.
         </p>
 
         <label className={styles.label}>

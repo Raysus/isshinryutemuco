@@ -8,6 +8,43 @@ export type NewsItem = {
   authorEmail: string
 }
 
+
+
+export type EventItem = {
+  id: string
+  title: string
+  body: string
+  date: string
+  time: string | null
+  place: string | null
+  imageUrl: string | null
+  createdAt: string
+  updatedAt: string
+  authorEmail: string
+}
+
+export type GalleryItem = {
+  id: string
+  imageUrl: string
+  alt: string
+  sortOrder: number
+}
+
+export type VideoItem = {
+  id: string
+  youtubeId: string | null
+  fileUrl: string | null
+  title: string
+  note: string
+  sortOrder: number
+}
+
+export type VideosDoc = {
+  title: string
+  intro: string
+  items: VideoItem[]
+}
+
 export type AuthUser = {
   id: string
   email: string
@@ -60,6 +97,69 @@ export const api = {
       method: 'POST',
       body: formData,
     }),
+  updateNews: (id: string, formData: FormData) =>
+    request<NewsItem>(`/api/news/${id}`, {
+      method: 'PUT',
+      body: formData,
+    }),
   deleteNews: (id: string) =>
     request<{ ok: boolean }>(`/api/news/${id}`, { method: 'DELETE' }),
+  listGallery: () => request<GalleryItem[]>('/api/gallery'),
+  createGallery: (formData: FormData) =>
+    request<GalleryItem>('/api/gallery', {
+      method: 'POST',
+      body: formData,
+    }),
+  updateGallery: (id: string, formData: FormData) =>
+    request<GalleryItem>(`/api/gallery/${id}`, {
+      method: 'PUT',
+      body: formData,
+    }),
+  deleteGallery: (id: string) =>
+    request<{ ok: boolean }>(`/api/gallery/${id}`, { method: 'DELETE' }),
+  moveGallery: (id: string, direction: 'up' | 'down') =>
+    request<GalleryItem[]>(`/api/gallery/${id}/move`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ direction }),
+    }),
+  listVideos: () => request<VideosDoc>('/api/videos'),
+  updateVideosSection: (title: string, intro: string) =>
+    request<VideosDoc>('/api/videos/section', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title, intro }),
+    }),
+  createVideo: (formData: FormData) =>
+    request<VideoItem>('/api/videos', {
+      method: 'POST',
+      body: formData,
+    }),
+  updateVideo: (id: string, formData: FormData) =>
+    request<VideoItem>(`/api/videos/${id}`, {
+      method: 'PUT',
+      body: formData,
+    }),
+  deleteVideo: (id: string) =>
+    request<{ ok: boolean }>(`/api/videos/${id}`, { method: 'DELETE' }),
+  moveVideo: (id: string, direction: 'up' | 'down') =>
+    request<VideosDoc>(`/api/videos/${id}/move`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ direction }),
+    }),
+  listEvents: (upcoming = false) =>
+    request<EventItem[]>(upcoming ? '/api/events?upcoming=1' : '/api/events'),
+  createEvent: (formData: FormData) =>
+    request<EventItem>('/api/events', {
+      method: 'POST',
+      body: formData,
+    }),
+  updateEvent: (id: string, formData: FormData) =>
+    request<EventItem>(`/api/events/${id}`, {
+      method: 'PUT',
+      body: formData,
+    }),
+  deleteEvent: (id: string) =>
+    request<{ ok: boolean }>(`/api/events/${id}`, { method: 'DELETE' }),
 }
