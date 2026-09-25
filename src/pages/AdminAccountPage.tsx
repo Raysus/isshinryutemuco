@@ -1,6 +1,7 @@
 import { type FormEvent, useEffect, useState } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth'
+import { AccountMenu } from '../components/AccountMenu'
 import styles from './Admin.module.css'
 
 export function AdminAccountPage() {
@@ -73,6 +74,7 @@ export function AdminAccountPage() {
             <p className={styles.help}>Nombre, correo y contraseña del administrador.</p>
           </div>
           <div className={styles.topActions}>
+            <AccountMenu />
             <Link className={styles.back} to="/">
               Ver sitio
             </Link>

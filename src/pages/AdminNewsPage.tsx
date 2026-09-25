@@ -1,6 +1,7 @@
 import { type FormEvent, useEffect, useState } from 'react'
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth'
+import { AccountMenu } from '../components/AccountMenu'
 import {
   api,
   imageSrc,
@@ -30,7 +31,7 @@ function isTab(value: string | undefined): value is Tab {
 export function AdminNewsPage() {
   const { section } = useParams<{ section?: string }>()
   const navigate = useNavigate()
-  const { user, loading, logout } = useAuth()
+  const { user, loading } = useAuth()
   const tab: Tab = isTab(section) ? section : 'noticias'
   const setTab = (next: Tab) => {
     navigate(`/admin/${next}`)
@@ -416,16 +417,10 @@ export function AdminNewsPage() {
             </p>
           </div>
           <div className={styles.topActions}>
+            <AccountMenu />
             <Link className={styles.back} to="/">
               Ver sitio
             </Link>
-            <button
-              className={styles.secondaryButton}
-              type="button"
-              onClick={() => void logout()}
-            >
-              Cerrar sesión
-            </button>
           </div>
         </header>
 
