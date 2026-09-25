@@ -6,7 +6,7 @@ import styles from './Admin.module.css'
 export function AdminLoginPage() {
   const { user, loading, login } = useAuth()
   const navigate = useNavigate()
-  const [email, setEmail] = useState('admin@isshinryutemuco.cl')
+  const [email, setEmail] = useState('ra.guti.el@gmail.com')
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [submitting, setSubmitting] = useState(false)
