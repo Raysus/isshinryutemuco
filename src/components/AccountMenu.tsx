@@ -1,14 +1,25 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth'
 import styles from './AccountMenu.module.css'
 
-function initialOf(email: string) {
+const ADMIN_LINKS = [
+  { to: '/admin/noticias', label: 'Noticias' },
+  { to: '/admin/eventos', label: 'Eventos' },
+  { to: '/admin/galeria', label: 'Galería' },
+  { to: '/admin/videos', label: 'Videos' },
+  { to: '/admin/cuenta', label: 'Mis datos' },
+] as const
+
+function initialOf(name: string | null | undefined, email: string) {
+  const fromName = name?.trim().charAt(0)
+  if (fromName) return fromName.toUpperCase()
   return email.trim().charAt(0).toUpperCase() || 'A'
 }
 
 export function AccountMenu({ onNavigate }: { onNavigate?: () => void }) {
   const { user, loading, logout } = useAuth()
+  const location = useLocation()
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
@@ -30,6 +41,10 @@ export function AccountMenu({ onNavigate }: { onNavigate?: () => void }) {
     }
   }, [open])
 
+  useEffect(() => {
+    setOpen(false)
+  }, [location.pathname])
+
   if (loading) return null
 
   if (!user) {
@@ -50,6 +65,8 @@ export function AccountMenu({ onNavigate }: { onNavigate?: () => void }) {
     }
   }
 
+  const displayName = user.name?.trim() || 'Administrador'
+
   return (
     <div className={styles.account} ref={ref}>
       <button
@@ -57,40 +74,46 @@ export function AccountMenu({ onNavigate }: { onNavigate?: () => void }) {
         className={styles.trigger}
         aria-haspopup="menu"
         aria-expanded={open}
-        aria-label="Menú de cuenta"
+        aria-label="Menú de administración"
         onClick={() => setOpen((value) => !value)}
       >
         <span className={styles.avatar} aria-hidden="true">
-          {initialOf(user.email)}
+          {initialOf(user.name, user.email)}
         </span>
         <ChevronIcon className={open ? styles.chevOpen : styles.chev} />
       </button>
 
       {open ? (
-        <div className={styles.menu} role="menu">
+        <div className={styles.menu} role="menu" aria-label="Administración">
           <div className={styles.menuHead}>
             <span className={styles.avatarLg} aria-hidden="true">
-              {initialOf(user.email)}
+              {initialOf(user.name, user.email)}
             </span>
             <div className={styles.who}>
-              <p className={styles.name}>Administrador</p>
+              <p className={styles.name}>{displayName}</p>
               <p className={styles.email}>{user.email}</p>
             </div>
           </div>
 
           <div className={styles.list}>
-            <Link
-              className={styles.item}
-              role="menuitem"
-              to="/admin/noticias"
-              onClick={() => {
-                setOpen(false)
-                onNavigate?.()
-              }}
-            >
-              <span>Panel</span>
-              <NewsIcon />
-            </Link>
+            {ADMIN_LINKS.map((item) => {
+              const active = location.pathname === item.to
+              return (
+                <Link
+                  key={item.to}
+                  className={active ? `${styles.item} ${styles.itemActive}` : styles.item}
+                  role="menuitem"
+                  to={item.to}
+                  onClick={() => {
+                    setOpen(false)
+                    onNavigate?.()
+                  }}
+                >
+                  <span>{item.label}</span>
+                  {active ? <span className={styles.dot} aria-hidden="true" /> : null}
+                </Link>
+              )
+            })}
           </div>
 
           <div className={styles.divider} />
@@ -132,16 +155,6 @@ function ChevronIcon({ className }: { className?: string }) {
   return (
     <svg {...iconProps} className={className} aria-hidden="true">
       <path d="m6 9 6 6 6-6" />
-    </svg>
-  )
-}
-
-function NewsIcon() {
-  return (
-    <svg {...iconProps} aria-hidden="true">
-      <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Z" />
-      <path d="M2 11v9a2 2 0 0 0 2 2" />
-      <path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z" />
     </svg>
   )
 }

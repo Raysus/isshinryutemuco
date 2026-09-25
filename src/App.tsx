@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { AuthProvider } from './auth/AuthContext'
 import { infoPages } from './content/pages'
+import { AdminAccountPage } from './pages/AdminAccountPage'
 import { AdminLoginPage } from './pages/AdminLoginPage'
 import { AdminNewsPage } from './pages/AdminNewsPage'
 import { HomePage } from './pages/HomePage'
@@ -23,7 +24,8 @@ function App() {
             />
           ))}
           <Route path="/admin" element={<AdminLoginPage />} />
-          <Route path="/admin/noticias" element={<AdminNewsPage />} />
+          <Route path="/admin/cuenta" element={<AdminAccountPage />} />
+          <Route path="/admin/:section" element={<AdminNewsPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>

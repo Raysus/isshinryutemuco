@@ -10,6 +10,7 @@ export type User = {
   email: string
   passwordHash: string
   role: 'admin'
+  name?: string
 }
 
 export type NewsItem = {
@@ -99,6 +100,7 @@ export function ensureAdminUser(rootDir: string) {
     email,
     passwordHash,
     role: 'admin',
+    name: process.env.ADMIN_NAME?.trim() || undefined,
   })
   writeUsers(rootDir, users)
   console.log(`Admin creado: ${email}`)
