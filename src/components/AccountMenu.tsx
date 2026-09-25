@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import { type FormEvent, useEffect, useId, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth'
 import styles from './AccountMenu.module.css'
@@ -19,20 +20,29 @@ function initialOf(name: string | null | undefined, email: string) {
 }
 
 export function AccountMenu({ onNavigate }: { onNavigate?: () => void }) {
-  const { user, loading, logout } = useAuth()
+  const { user, loading, login, logout } = useAuth()
   const location = useLocation()
   const [open, setOpen] = useState(false)
+  const [loginOpen, setLoginOpen] = useState(false)
+  const [email, setEmail] = useState('ra.guti.el@gmail.com')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [submitting, setSubmitting] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
+  const titleId = useId()
 
   useEffect(() => {
-    if (!open) return
+    if (!open && !loginOpen) return
     function onDown(event: MouseEvent) {
       if (ref.current && !ref.current.contains(event.target as Node)) {
         setOpen(false)
       }
     }
     function onKey(event: KeyboardEvent) {
-      if (event.key === 'Escape') setOpen(false)
+      if (event.key === 'Escape') {
+        setOpen(false)
+        setLoginOpen(false)
+      }
     }
     document.addEventListener('mousedown', onDown)
     document.addEventListener('keydown', onKey)
@@ -40,21 +50,37 @@ export function AccountMenu({ onNavigate }: { onNavigate?: () => void }) {
       document.removeEventListener('mousedown', onDown)
       document.removeEventListener('keydown', onKey)
     }
-  }, [open])
+  }, [open, loginOpen])
 
   useEffect(() => {
     setOpen(false)
   }, [location.pathname])
 
+  useEffect(() => {
+    if (!loginOpen) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [loginOpen])
+
   if (loading) return null
 
-  if (!user) {
-    return (
-      <Link className={styles.login} to="/admin" onClick={onNavigate}>
-        <PersonIcon />
-        <span>Ingresar</span>
-      </Link>
-    )
+  async function handleLogin(event: FormEvent) {
+    event.preventDefault()
+    setSubmitting(true)
+    setError('')
+    try {
+      await login(email.trim().toLowerCase(), password)
+      setPassword('')
+      setLoginOpen(false)
+      onNavigate?.()
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'No se pudo iniciar sesión')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   async function handleLogout() {
@@ -64,6 +90,85 @@ export function AccountMenu({ onNavigate }: { onNavigate?: () => void }) {
     } catch {
       /* mantener sesión visible si falla el cierre */
     }
+  }
+
+  if (!user) {
+    return (
+      <div className={styles.account} ref={ref}>
+        <button
+          type="button"
+          className={styles.login}
+          onClick={() => {
+            setError('')
+            setPassword('')
+            setLoginOpen(true)
+          }}
+        >
+          <PersonIcon />
+          <span>Ingresar</span>
+        </button>
+
+        {loginOpen
+          ? createPortal(
+              <div className={styles.modalRoot} role="presentation">
+                <button
+                  type="button"
+                  className={styles.backdrop}
+                  aria-label="Cerrar"
+                  onClick={() => setLoginOpen(false)}
+                />
+                <div
+                  className={styles.modal}
+                  role="dialog"
+                  aria-modal="true"
+                  aria-labelledby={titleId}
+                >
+                  <h2 id={titleId}>Ingresar</h2>
+                  <p className={styles.modalLead}>
+                    Acceso de administradores para publicar noticias, eventos, galería y videos.
+                  </p>
+                  <form className={styles.form} onSubmit={(e) => void handleLogin(e)}>
+                    <label>
+                      Correo
+                      <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        autoComplete="username"
+                        required
+                      />
+                    </label>
+                    <label>
+                      Contraseña
+                      <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        autoComplete="current-password"
+                        required
+                      />
+                    </label>
+                    {error ? <p className={styles.error}>{error}</p> : null}
+                    <div className={styles.formActions}>
+                      <button
+                        type="button"
+                        className={styles.secondary}
+                        onClick={() => setLoginOpen(false)}
+                      >
+                        Cancelar
+                      </button>
+                      <button type="submit" className={styles.primary} disabled={submitting}>
+                        {submitting ? 'Entrando…' : 'Entrar'}
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>,
+              document.body,
+            )
+          : null}
+      </div>
+    )
   }
 
   const displayName = user.name?.trim() || 'Administrador'
@@ -123,7 +228,7 @@ export function AccountMenu({ onNavigate }: { onNavigate?: () => void }) {
             type="button"
             className={`${styles.item} ${styles.logout}`}
             role="menuitem"
-            onClick={handleLogout}
+            onClick={() => void handleLogout()}
           >
             <span>Cerrar sesión</span>
             <LogoutIcon />
