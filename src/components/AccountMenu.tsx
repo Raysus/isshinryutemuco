@@ -105,7 +105,7 @@ export function AccountMenu({ onNavigate }: { onNavigate?: () => void }) {
           }}
         >
           <PersonIcon />
-          <span>Ingresar</span>
+          <span className={styles.loginLabel}>Ingresar</span>
         </button>
 
         {loginOpen

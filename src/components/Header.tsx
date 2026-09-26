@@ -84,10 +84,11 @@ export function Header() {
             className={styles.menuButton}
             aria-expanded={open}
             aria-controls="nav-principal"
+            aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
             onClick={() => setOpen((value) => !value)}
           >
             <span className={styles.menuIcon} aria-hidden="true" />
-            {open ? 'Cerrar' : 'Menú'}
+            <span className={styles.menuButtonLabel}>{open ? 'Cerrar' : 'Menú'}</span>
           </button>
         </div>
       </div>
