@@ -1,8 +1,9 @@
 /**
- * Tracking ligero: visitas (ingresos al sitio) y clics en clase de prueba.
- * - Si existe VITE_GA_MEASUREMENT_ID → envía a Google Analytics 4.
- * - Siempre acumula contadores en localStorage (útil en local / sin GA).
+ * Tracking ligero: visitas y clics en clase de prueba.
+ * - Contadores locales y GA4 solo con consentimiento de analítica (Ley 21.719).
  */
+
+import { getCookieConsent, onCookieConsent } from './consent'
 
 const STORAGE_KEY = 'isshin_temuco_analytics_v1'
 
@@ -36,7 +37,7 @@ function writeCounters(next: Counters) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(next))
   } catch {
-    /* ignore quota / private mode */
+    /* ignore */
   }
 }
 
@@ -45,10 +46,14 @@ function measurementId(): string | undefined {
   return typeof id === 'string' && id.startsWith('G-') ? id : undefined
 }
 
+function analyticsAllowed() {
+  return getCookieConsent()?.analytics === true
+}
+
 let gaReady = false
 
 export function initAnalytics() {
-  if (typeof window === 'undefined' || gaReady) return
+  if (typeof window === 'undefined' || gaReady || !analyticsAllowed()) return
   const id = measurementId()
   if (!id) return
 
@@ -67,12 +72,12 @@ export function initAnalytics() {
 }
 
 function sendGa(event: string, params?: Record<string, string | number>) {
-  if (!gaReady || typeof window.gtag !== 'function') return
+  if (!analyticsAllowed() || !gaReady || typeof window.gtag !== 'function') return
   window.gtag('event', event, params)
 }
 
-/** Ingreso / visita a la landing */
 export function trackPageView(path = window.location.pathname + window.location.hash) {
+  if (!analyticsAllowed()) return
   initAnalytics()
   const next = readCounters()
   next.pageViews += 1
@@ -81,8 +86,8 @@ export function trackPageView(path = window.location.pathname + window.location.
   sendGa('page_view', { page_path: path })
 }
 
-/** Clic en CTA de clase de prueba */
 export function trackTrialClassClick(source: string) {
+  if (!analyticsAllowed()) return
   initAnalytics()
   const next = readCounters()
   next.trialClassClicks += 1
@@ -95,8 +100,15 @@ export function getAnalyticsSnapshot(): Counters {
   return readCounters()
 }
 
-/** Expone snapshot en consola: window.__isshinStats() */
 export function exposeAnalyticsDebug() {
   if (typeof window === 'undefined') return
   ;(window as Window & { __isshinStats?: () => Counters }).__isshinStats = getAnalyticsSnapshot
+}
+
+/** Call once at boot: track when consent already given or when user accepts. */
+export function bindAnalyticsToConsent() {
+  if (analyticsAllowed()) trackPageView()
+  onCookieConsent((c) => {
+    if (c.analytics) trackPageView()
+  })
 }

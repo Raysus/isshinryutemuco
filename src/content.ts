@@ -374,6 +374,10 @@ export const footer = {
       href: '/escuela/equipo',
     },
     {
+      label: 'Privacidad',
+      href: '/privacidad',
+    },
+    {
       label: 'YouTube',
       href: 'https://www.youtube.com/channel/UCjZWfkaLP2jMYvHJG_xDDyQ',
     },
